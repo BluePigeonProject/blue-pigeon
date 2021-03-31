@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Battery Optimizer</string>
+    <string name="fileListenerName">BlueWaffleListener</string>
+</resources>
