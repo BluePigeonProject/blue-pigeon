@@ -1,8 +1,9 @@
 <p align="center">
 <img src="/images/blue-pigeon-logo.jpg">
+<h3>Blue Pigeon: Bluetooth-based Data Exfiltration and Proxy Tool for Red Teamers</h3>
 </p>
 
-###  Blue Pigeon: Bluetooth-based Data Exfiltration and Proxy Tool for Red Teamers
+
 
 1. [The Motivation | Birth of the Bird](#the-motivation--birth-of-the-bird)
 
@@ -78,11 +79,11 @@ Blue Pigeon runs as a foreground service within an Android mobile phone. When th
 Blue Pigeon must allow data exfiltration to happen while evading detection on various levels: 
 
 - <u>Evading network traffic detection:</u> Data exfiltration from the compromised host is not allowed to go through traditional communication channels as they are likely to be logged and monitored by standard EDRs. (and there already are many other better options, why reinvent the wheel right?)
-  - **Blue Pigeon communicates over Bluetooth, which (we think) is a rather obscure and unorthodox, yet reliable channel.**
+  - Blue Pigeon communicates over Bluetooth, which (we think) is a rather obscure and unorthodox, yet reliable channel.
   
 - <u>Evading victim suspicions:</u> Data exfiltration must happen without any visual indicators on the victim's machine, as he is expected to still be using the compromised machine in the worst-case scenario.
 
-  - **Blue Pigeon is able to establish communication without the need of Bluetooth Pairing, which would normally trigger a popup for user authentication.**
+  - Blue Pigeon is able to establish communication without the need of Bluetooth Pairing, which would normally trigger a popup for user authentication.
 
 
 
@@ -95,16 +96,16 @@ Blue Pigeon must maintain stealth, i.e. staying inconspicuous while being deploy
 
 - Chunky laptops, Raspberry Pis and homebrew hacker kits are a straight *No-Go* as it limits the possibilities and feasibility of deployment. *We need a small and innocent looking pigeon, not a freakin' alpha male peacock!*
 
-  - **Blue Pigeon hides within a typical Android phone that the Red Teamer/Malicious Insider can bring into the field. No one ever suspects a mobile phone...**
-  - **In the rare event where the Red Teamer is being challenged for inspection (or someone suspects the phone 'cos we just jinxed it), Blue Pigeon can be developed into various inconspicuous applications to suit the context of the operation. In this base repo, the mobile application is disguised as a Battery Optimizer app. Feel free to fork the repo and bring Blue Pigeon out for an aesthetical makeover!**
+  - Blue Pigeon hides within a typical Android phone that the Red Teamer/Malicious Insider can bring into the field. No one ever suspects a mobile phone...
+  - In the rare event where the Red Teamer is being challenged for inspection *(or someone suspects the phone 'cos we just jinxed it)*, Blue Pigeon can be developed into various inconspicuous applications to suit the context of the operation. In this base repo, the mobile application is disguised as a Battery Optimizer app. Feel free to fork the repo and bring Blue Pigeon out for an aesthetical makeover!
 
 - Blue Pigeon should avoid causing the Red Teamer to throw off tell-tale signs while deploying the phone.
 
-  - **The Red Teamer only needs to launch the application and introduce the phone into proximity of the compromised machine.**
+  - The Red Teamer only needs to launch the application and introduce the phone into proximity of the compromised machine.
 
-  - **Blue Pigeon runs in the background of the mobile phone and does not require the screen to be kept active.**
+  - Blue Pigeon runs in the background of the mobile phone and does not require the screen to be kept active.
 
-  - **Blue Pigeon automatically consumes incoming messages and does not require the Red Teamer to manually accept the file transfer request pop-up (it won't even pop up actually)**
+  - Blue Pigeon automatically consumes incoming messages and does not require the Red Teamer to manually accept the file transfer request pop-up (it won't even pop up actually).
 
 
 
@@ -116,10 +117,8 @@ Blue Pigeon must be able to stay alive to catch incoming messages without routin
 
 - Blue Pigeon must be able to stay alive to catch incoming messages without routine intervention by the Red Teamer.
 - Blue Pigeon must be able to withstand malicious requests/DoS attempts and maintain availableness to the intended host.
-  - **Blue Pigeon is capable of permanently staying in discoverable mode for the compromised host to scan and connect to.**
-  - **HMAC-based authentication and filename randomization are employed to mitigate against DoS and replay attacks. Blue Pigeon only accepts the file transfer requests after authentication using a configurable secret passphrase.**
-
-
+  - Blue Pigeon is capable of permanently staying in discoverable mode for the compromised host to scan and connect to.
+  - HMAC-based authentication and filename randomization are employed to mitigate against DoS and replay attacks. Blue Pigeon only accepts the file transfer requests after authentication using a configurable secret passphrase.
 
 
 
