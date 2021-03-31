@@ -36,7 +36,7 @@ Blue Pigeon is a Bluetooth-based data exfiltration and proxy tool to enable comm
 
 It is a tool particularly useful for Red Team operations where communications over traditional channels (i.e. web, e-mail, DNS) are not available for use. 
 
-Inspired by the [Rock Dove](https://en.wikipedia.org/wiki/Homing_pigeon)'s ability to carry messages back to its home, Blue Pigeon mimics the homing behavior and delivers messages/payloads between the agent (compromised host) and its nest (mobile application and subsequently proxied to C2 server) over Bluetooth.
+Inspired by the [Rock Dove](https://en.wikipedia.org/wiki/Homing_pigeon)'s ability to carry messages back to its home, Blue Pigeon mimics the homing behaviour and delivers messages/payloads between the agent (compromised host) and its nest (mobile application and subsequently proxied to C2 server) over Bluetooth.
 
 Blue Pigeon is created by [@mahchiahui](https://github.com/mahchiahui), [@jingloon](https://github.com/jingloon) and [@cloudkanghao](https://github.com/cloudkanghao)
 
@@ -179,7 +179,7 @@ The Blue Beak package houses a set of custom [EdXposed Framework](https://github
 *Why EdXposed? Well... we stumbled into 2 major problems early in the conceptualization phase:
 
 1. Due to security concerns, the modern Android OS no longer allows apps to programmatically accept or filter the incoming Bluetooth file transfer requests. This is problematic as the modus operandi of Blue Pigeon relies on it being able to inspect the incoming requests and accept or reject them in real time.
-2. *The default maximum time of Android's Bluetooth Discovery Mode timeout is  3600 seconds (1 hour). Sticking to this limit would mean that the Red Teamer would have to manually refresh Blue Pigeon frequently, which is rather infeasible and may hinder the conduct of the operation.*
+2. The default maximum time of Android's Bluetooth Discovery Mode timeout is  3600 seconds (1 hour). Sticking to this limit would mean that the Red Teamer would have to manually refresh Blue Pigeon frequently, which is rather infeasible and may hinder the conduct of the operation.
 
 To address these problems effectively, we decided to use the EdXposed Framework, which provides Android Runtime (ART) hooking, and write our custom hooks to bypass the OS-level restrictions in a modular fashion.
 ```
@@ -263,7 +263,7 @@ To deploy Blue Pigeon for your data exfiltration needs, the following are requir
 
 ## Security Considerations
 
-As an offensive tool, it would be kinda embarrassing if Blue Pigeon was to fall short against other attackers or bird haters. 
+As an offensive tool, it would be kinda embarrassing if Blue Pigeon was to fall short against simple attempts from other attackers or bird haters. 
 
 For a start\*, Blue Pigeon is designed with protection against these few potential attacks:
 
@@ -273,7 +273,7 @@ For a start\*, Blue Pigeon is designed with protection against these few potenti
 
 One limitation of using Bluetooth File Sharing as a communication protocol is its lack of asynchronous transfer. As only 1 file transfer process may take place at any point in time, Blue Pigeon must be careful to only allow and consume legitimate incoming requests.
 
-If an adversary around the vicinity is able to craft a rogue request and trick Blue Pigeon into accepting it, he could possibly induce a temporary DoS attack against the setup if he sends an excessively large dummy file, or even attempt to compromise the mobile phone or remote Blue Coop with the malicious content embedded within.
+If an adversary in the vicinity is able to craft a rogue request and trick Blue Pigeon into accepting it, he could possibly induce a temporary DoS attack against the setup if he sends an excessively large dummy file, or even attempt to compromise the mobile phone or remote Blue Coop with the malicious content embedded within.
 
 To mitigate against such potential attacks, the file name of the incoming file requests are authenticated using a HMAC authentication scheme with a configurable shared passphrase. 
 
@@ -292,7 +292,7 @@ The file name verification logic resides in `com.csg.bluepigeon.util.EncryptionM
 
 ### 2. Replay Attack Prevention
 
-Another avenue of attack would be via replay attacks. An adversary around the vicinity could potentially sniff the communication traffic and obtain a file name that was previously accepted. He could then attempt to reuse/”replay” the file name and send a rogue file transfer request to Blue Pigeon. Similarly, a large-enough rogue file transfer could induce a temporary DoS against the setup.
+Another avenue of attack would be via replay attacks. An adversary in the vicinity could potentially sniff the communication traffic and obtain a file name that was previously accepted. He could then attempt to reuse/”replay” the file name and send a rogue file transfer request to Blue Pigeon. Similarly, a large-enough rogue file transfer could induce a temporary DoS against the setup.
 
 To mitigate against this, file names will not be allowed to be reused. Blue Beak will ensure that the incoming file name has not been consumed before (by polling the `/sdcard/blue_pigeon/backup` folder).
 
