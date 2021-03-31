@@ -1,6 +1,7 @@
 <p align="center">
 <img src="/images/blue-pigeon-logo.jpg">
-<h3>Blue Pigeon: Bluetooth-based Data Exfiltration and Proxy Tool for Red Teamers</h3>
+<br />
+   <b>Blue Pigeon: Bluetooth-based Data Exfiltration and Proxy Tool for Red Teamers</b>
 </p>
 
 
