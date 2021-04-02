@@ -55,7 +55,7 @@ Blue Pigeon is created by [@mahchiahui](https://github.com/mahchiahui), [@jinglo
 
 Establishing Command and Control and performing data exfiltration are key phases in the Cyber Kill Chain, but they often come with their complications and severe implications if done wrongly. In a Red Team operation, a misfired attempt could leave permanent traces in the network activity logs and raise alarm to the detection mechanisms. 
 
-In some of our Red Teaming operations, we found ourselves in need of a way to exfiltrate data and communicate with the compromised host without having to go through the traditional channels (i.e., web, email, DNS). 
+In some of our Red Teaming exercises, we found ourselves in need of a way to exfiltrate data and communicate with the compromised host without having to go through the traditional channels (i.e., web, email, DNS). 
 
 With few solutions available to address this need we explored various exfiltration ideas based on wireless/radio-comms vectors. As a result, Blue Pigeon was created to expand our Red Team toolset.
 
@@ -216,7 +216,7 @@ Most of the underlying Bluetooth modules used by Blue Dispatcher comes from the 
 
 
 
-## Setting up Blue Pigeon | Requirements, installation and usage
+## Setting up Blue Pigeon | Requirements, installation, and usage
 
 ### Requirements
 
