@@ -178,7 +178,8 @@ The Blue Beak package houses a set of custom [EdXposed Framework](https://github
 
   <p align="center">
     <img src="/images/bird-is-alive-hook.jpg">
-    <br />Concept Art vs Real Icon
+    <br />
+   <i>The concept art was pretty spot on!</i>
   </p>
 
 
