@@ -36,9 +36,11 @@
 
 Blue Pigeon is a Bluetooth-based data exfiltration and proxy tool to enable communication between a remote Command and Control (C2) server and a compromised host. 
 
-It is a tool particularly useful for Red Team operations where communications over traditional channels (i.e. web, e-mail, DNS) are not available for use. 
+Inspired by the [Rock Dove](https://en.wikipedia.org/wiki/Homing_pigeon)'s ability to carry messages back to its home, Blue Pigeon mimics the homing behaviour and delivers messages/payloads between the agent (compromised host) and its nest (mobile application and subsequently proxied to C2 server).
 
-Inspired by the [Rock Dove](https://en.wikipedia.org/wiki/Homing_pigeon)'s ability to carry messages back to its home, Blue Pigeon mimics the homing behaviour and delivers messages/payloads between the agent (compromised host) and its nest (mobile application and subsequently proxied to C2 server) over Bluetooth.
+Blue Pigeon is developed as an Android application for the Red Teamer to deploy within vicinity of the compromised host and is particularly useful for Red Team operations where communications over traditional channels (i.e., web, e-mail, DNS) are not available.
+
+Expanding on the “Exfiltration over Alternative Protocol” technique (ID: T1048) under the Exfiltration tactic of the MITRE AT&CK framework, Blue Pigeon provides a novel way of establishing Command and Control and performing data exfiltration as an Action on Objective of the Cyber Kill Chain by utilizing Bluetooth File Sharing as the exfiltration medium. 
 
 Blue Pigeon is created by [@mahchiahui](https://github.com/mahchiahui), [@jingloon](https://github.com/jingloon) and [@cloudkanghao](https://github.com/cloudkanghao)
 
@@ -51,14 +53,17 @@ Blue Pigeon is created by [@mahchiahui](https://github.com/mahchiahui), [@jinglo
 
 ## The Motivation | Birth of the Bird
 
-In some of our Red Teaming operations, we found ourselves in need of a way to exfiltrate data and communicate with the compromised host without having to go through the traditional channels (i.e. web, email, DNS). 
+Establishing Command and Control and performing data exfiltration are key phases in the Cyber Kill Chain, but they often come with their complications and severe implications if done wrongly. In a Red Team operation, a misfired attempt could leave permanent traces in the network activity logs and raise alarm to the detection mechanisms. 
 
-Without a good solution to address the need and in effort to expand our Red Team toolsets, we went on to explore around with various exfiltration ideas surrounding the wireless/radiocomms vector. As a result, Blue Pigeon was created.
+In some of our Red Teaming operations, we found ourselves in need of a way to exfiltrate data and communicate with the compromised host without having to go through the traditional channels (i.e., web, email, DNS). 
+
+With few solutions available to address this need we explored various exfiltration ideas based on wireless/radio-comms vectors. As a result, Blue Pigeon was created to expand our Red Team toolset.
+
 
 
 ### How does Blue Pigeon work?
 
-Blue Pigeon runs as a foreground service within an Android mobile phone. When the Red Teamer/Malicious Insider deploys the phone into proximity of the compromised host (infected with Blue Dispatcher payload), Blue Pigeon will be able to serve as an exfiltration point and command relay proxy to a remote C2 server (a.k.a Blue Coop).
+Blue Pigeon runs as a foreground service within an Android mobile phone. When the Red Teamer/Malicious Insider deploys the phone into proximity to the compromised host (infected with Blue Dispatcher payload), Blue Pigeon will be able to serve as an exfiltration point and command relay proxy to a remote C2 server (a.k.a Blue Coop).
 
 <p align="center">
 <img src="/images/overview-chart.jpg">
@@ -73,18 +78,18 @@ Blue Pigeon runs as a foreground service within an Android mobile phone. When th
 
 ### The Pigeon's Key Requirements
 
-**Blue Pigeon was engineered with the following key requirements in consideration:**
+**Blue Pigeon was engineered with the following key requirements:**
 
 #### **1. Evasiveness**
 
-Blue Pigeon must allow data exfiltration to happen while evading detection on various levels: 
+Blue Pigeon must allow data exfiltration while evading detection on various levels: 
 
-- <u>Evading network traffic detection:</u> Data exfiltration from the compromised host is not allowed to go through traditional communication channels as they are likely to be logged and monitored by standard EDRs. (and there already are many other better options, why reinvent the wheel right?)
+- <u>Evading network traffic detection:</u> Data exfiltration from the compromised host cannot go through traditional communication channels as they are likely to be logged and monitored by standard Endpoint Detection and Response. (and there already are many other better options, why reinvent the wheel, right?)
   - Blue Pigeon communicates over Bluetooth, which (we think) is a rather obscure and unorthodox, yet reliable channel.
   
-- <u>Evading victim suspicions:</u> Data exfiltration must happen without any visual indicators on the victim's machine, as he is expected to still be using the compromised machine in the worst-case scenario.
+- <u>Evading human detection:</u> Data exfiltration must happen without any visual indicators on the victim's machine, as he is expected to still be using the compromised machine in the worst-case scenario.
 
-  - Blue Pigeon is able to establish communication without the need of Bluetooth Pairing, which would normally trigger a popup for user authentication.
+  - o	Blue Pigeon can establish communication without the need for Bluetooth pairing, which would normally trigger a popup for user authentication.
 
 
 
@@ -93,16 +98,17 @@ Blue Pigeon must allow data exfiltration to happen while evading detection on va
 
 #### **2. Stealth**
 
-Blue Pigeon must maintain stealth, i.e. staying inconspicuous while being deployed on the field.
+Blue Pigeon must maintain stealth, i.e. staying inconspicuous deployed on the field.
 
 - Chunky laptops, Raspberry Pis and homebrew hacker kits are a straight *No-Go* as it limits the possibilities and feasibility of deployment. *We need a small and innocent looking pigeon, not a freakin' alpha male peacock!*
 
   - Blue Pigeon hides within a typical Android phone that the Red Teamer/Malicious Insider can bring into the field. No one ever suspects a mobile phone...
-  - In the rare event where the Red Teamer is being challenged for inspection *(or someone suspects the phone 'cos we just jinxed it)*, Blue Pigeon can be developed into various inconspicuous applications to suit the context of the operation. In this base repo, the mobile application is disguised as a Battery Optimizer app. Feel free to fork the repo and bring Blue Pigeon out for an aesthetical makeover!
+  
+  - In the rare event where the Red Teamer is challenged for inspection, Blue Pigeon can be disguised as an inconspicuous application to suit the context of the operation. In the base proof-of-concept, the mobile application is disguised as a Battery Optimizer app. Feel free to fork the repo and take Blue Pigeon out for an aesthetic makeover!
 
-- Blue Pigeon should avoid causing the Red Teamer to throw off tell-tale signs while deploying the phone.
+- Blue Pigeon should avoid causing the Red Teamer to reveal any tell-tale signs of an exfiltration attempt while deploying the phone.
 
-  - The Red Teamer only needs to launch the application and introduce the phone into proximity of the compromised machine.
+  - The Red Teamer only needs to launch the application and bring the phone within proximity of the compromised machine.
 
   - Blue Pigeon runs in the background of the mobile phone and does not require the screen to be kept active.
 
@@ -114,12 +120,15 @@ Blue Pigeon must maintain stealth, i.e. staying inconspicuous while being deploy
 
 #### **3. High Availability**
 
-Blue Pigeon must be able to stay alive to catch incoming messages without routine intervention by the Red Teamer.
+Blue Pigeon must maintain maximum availability to (and only to) the compromised host while being deployed.
 
-- Blue Pigeon must be able to stay alive to catch incoming messages without routine intervention by the Red Teamer.
-- Blue Pigeon must be able to withstand malicious requests/DoS attempts and maintain availableness to the intended host.
+- Blue Pigeon must be able to stay alive to catch incoming messages without regular intervention by the Red Teamer.
+
+- Blue Pigeon must be able to withstand malicious requests/DoS attempts and maintain availability to the intended host.
+
   - Blue Pigeon is capable of permanently staying in discoverable mode for the compromised host to scan and connect to.
-  - HMAC-based authentication and filename randomization are employed to mitigate against DoS and replay attacks. Blue Pigeon only accepts the file transfer requests after authentication using a configurable secret passphrase.
+  
+  - HMAC-based authentication and filename randomization are employed to mitigate against DoS and replay attacks. Blue Pigeon only accepts the file transfer requests after authenticating with a configurable secret passphrase.
 
 
 
@@ -127,7 +136,7 @@ Blue Pigeon must be able to stay alive to catch incoming messages without routin
 
 ## The Components | Dissecting the Pidgey apart
 
-**Blue Pigeon is designed with a three-pronged strategy, which comprises of following components:**
+**Blue Pigeon is designed as a three-part framework comprising of following the components:**
 
 <p align="center">
 <img src="/images/blue-pigeon-components.jpg">
@@ -137,9 +146,9 @@ Blue Pigeon must be able to stay alive to catch incoming messages without routin
 
 ### 1. Blue Pigeon - The Mobile Application | The magical little blue messenger
 
-Blue Pigeon is the Android mobile application that acts as the intermediary proxy between the compromised host and the C2 server (a.k.a a Blue Coop). Blue Pigeon communicates with the compromised host (infected with Blue Dispatcher payload) over traditional Bluetooth file sharing (using OBEX). Data is exfiltrated from the host as JSON objects over text files (this can be customized by editing the `BluePigeonListener` class in the `com.csg.bluepigeon.pigeon` package and can be subsequently relayed to a remote Blue Coop . Upon receiving, a copy of the message will also be kept in the `/sdcard/blue_pigeon/backup` directory.
+Blue Pigeon is the Android mobile application that acts as the intermediary proxy between the compromised host and the C2 server (a.k.a a Blue Coop). Blue Pigeon communicates with the compromised host (infected with the Blue Dispatcher payload) over traditional Bluetooth file sharing (using OBEX). Data is exfiltrated from the host as JSON objects over text files. This can be customized by editing the `BluePigeonListener` class in the `com.csg.bluepigeon.pigeon` package and can be subsequently relayed to a remote Blue Coop. Upon receipt, a copy of the message will also be kept in the `/sdcard/blue_pigeon/backup` directory.
 
-In this repo, Blue Pigeon comes in the form of a simple looking Battery Optimizer application. However, it can be revamped into other UI styles. Feel free to customize Blue Pigeon’s UI to suit your operation needs by editing the `com.csg.bluepigeon.ui` package. 
+In this repo, Blue Pigeon comes in the form of a simple looking Battery Optimizer application. However, it can be revamped into other UI styles. Feel free to customize Blue Pigeon’s UI to suit your operation's needs by editing the `com.csg.bluepigeon.ui` package. 
 
 <p align="center">
 <img src="/images/battery-optimizer.jpg">
@@ -153,15 +162,15 @@ In this repo, Blue Pigeon comes in the form of a simple looking Battery Optimize
 
 The Blue Beak package houses a set of custom [EdXposed Framework](https://github.com/ElderDrivers/EdXposed) Hooks* written to bypass the Bluetooth API restrictions of modern Android (Android 9/10):
 
-1. <u>BlueBeakHook</u> - inspects the incoming file transfer request and decides whether to consume it or not. Employs authentication using a configurable secret passphrase to make sure incoming messages are from trustable sources. We don’t want it to accidentally consume a maliciously-crafted fat request (DoS by hogging attack mitigation). Also rejects previously consumed filenames (DoS by replay attack mitigation). (See [Security Considerations](#security-considerations))
+1. <u>BlueBeakHook</u> - inspects the incoming file transfer request and decides whether to consume it or not. Employs authentication using a configurable secret passphrase to make sure incoming messages are from trusted sources. We don’t want it to accidentally consume a malicious fat request (DoS by hogging attack mitigation). It also rejects previously consumed filenames (DoS by replay attack mitigation). (See [Security Considerations](#security-considerations))
 
    
 
-2. <u>CooCooHook</u> - bypasses the default Android Bluetooth Discoverable Mode timeout to make sure the mobile phone will continue to broadcast discovery packets while being deployed in the field. This is needed so that the compromised host is able to scan and reach out to Blue Pigeon at any point of the operation.
+2. <u>CooCooHook</u> - bypasses the default Android Bluetooth Discoverable Mode timeout to make sure the mobile phone will continue to broadcast discovery packets while being deployed in the field. This is needed so that the compromised host can scan and reach out to Blue Pigeon at any point in the operation.
 
    
 
-3. <u>NoPopupHook</u> - bypasses the Bluetooth File Transfer pop-up generation on Android OS and allows accepting or rejecting requests via code. This is important so as to not have the Red Teamer being constantly on the phone to accept the incoming messages. *Sus bro, sus...*
+3. <u>NoPopupHook</u> - bypasses the Bluetooth File Transfer pop-up generation on Android OS and allows accepting or rejecting requests via code. This is to prevent the Red Teamer from constantly being on the phone to accept the incoming messages. *Sus bro, sus...*
 
    
 
@@ -190,7 +199,7 @@ To address these problems effectively, we decided to use the EdXposed Framework,
 
 ### 3.  Blue Dispatcher - .NET module to inject into compromised host | The mailman behind the scenes
 
-The Blue Dispatcher contains the .NET modules to generate, send and receive payloads and messages to Blue Pigeon using the Windows Bluetooth stack. The module allows for file transfer to happen without the need for Bluetooth security authentication between the Blue Pigeon and the compromised host, i.e. pairing of device. This helps to maintain evasiveness (a key requirement) as there will not be visual pop-ups on the victim machine, which would induce suspicion to the victim.
+The Blue Dispatcher contains the .NET modules to generate, send and receive payloads to and from Blue Pigeon using the Windows Bluetooth stack. The module allows for file transfer to happen without the need for Bluetooth security authentication between the Blue Pigeon and the compromised host, i.e., device pairing. This helps to maintain evasiveness (a key requirement) as there will not be visual pop-ups on the victim machine, which would elicit suspicion.
 
 <p align="center">
 <img src="/images/windows-popup.jpg">
@@ -199,7 +208,7 @@ The Blue Dispatcher contains the .NET modules to generate, send and receive payl
 </p>
 
 
-Much of the underlying Bluetooth modules used by Blue Dispatcher comes from the well-known and very powerful [32feet](https://github.com/inthehand/32feet/) library. 
+Most of the underlying Bluetooth modules used by Blue Dispatcher comes from the well-known and very powerful [32feet](https://github.com/inthehand/32feet/) library. 
 
 **Note: Do implement your own application-layer encryption in Blue Dispatcher if needed, as the payloads are transferred via RFCOMM in plaintext.**
 
@@ -271,11 +280,12 @@ For a start\*, Blue Pigeon is designed with protection against these few potenti
 
 ### 1. Rogue Request Prevention
 
-One limitation of using Bluetooth File Sharing as a communication protocol is its lack of asynchronous transfer. As only 1 file transfer process may take place at any point in time, Blue Pigeon must be careful to only allow and consume legitimate incoming requests.
+One limitation of using the Bluetooth File Sharing as the exfiltration medium is its lack of asynchronous transfer. As only 1 file transfer process may take place at any point in time, Blue Pigeon must be careful to only allow and consume legitimate incoming requests.
 
-If an adversary in the vicinity is able to craft a rogue request and trick Blue Pigeon into accepting it, he could possibly induce a temporary DoS attack against the setup if he sends an excessively large dummy file, or even attempt to compromise the mobile phone or remote Blue Coop with the malicious content embedded within.
+If an adversary in the vicinity can craft a rogue request and trick Blue Pigeon into accepting it, they could possibly induce a temporary DoS attack against the setup by sending an excessively large dummy file. The attacker could even attempt to compromise the mobile phone or remote Blue Coop with malicious content embedded within the file.
 
-To mitigate against such potential attacks, the file name of the incoming file requests are authenticated using a HMAC authentication scheme with a configurable shared passphrase. 
+To mitigate against such potential attacks, the file names of the incoming file requests are authenticated using a HMAC authentication scheme with a configurable shared passphrase.
+
 
 The filename verification procedure is broken down into the following steps:
 
@@ -286,19 +296,19 @@ The filename verification procedure is broken down into the following steps:
 
 The file name verification logic resides in `com.csg.bluepigeon.util.EncryptionManager`and can be customized accordingly. 
 
-*Developer note: Actually, a sender MAC address verification would be the most ideal, but we went with the file name verification instead as it would be difficult to determine the victim’s Bluetooth MAC address in advance.*
+*Developer note: Actually, a sender MAC address verification would be the most ideal, but we went with file name verification instead as it would be difficult to determine the victim’s Bluetooth MAC address in advance.*
 
 
 
 ### 2. Replay Attack Prevention
 
-Another avenue of attack would be via replay attacks. An adversary in the vicinity could potentially sniff the communication traffic and obtain a file name that was previously accepted. He could then attempt to reuse/”replay” the file name and send a rogue file transfer request to Blue Pigeon. Similarly, a large-enough rogue file transfer could induce a temporary DoS against the setup.
+Another avenue of attack would be via replay attacks. An adversary in the vicinity could potentially sniff the communication traffic and obtain a file name that was previously accepted. They could then attempt to reuse/”replay” the file name and send a rogue file transfer request to Blue Pigeon. Similarly, a large-enough rogue file transfer could induce a temporary DoS against the setup.
 
 To mitigate against this, file names will not be allowed to be reused. Blue Beak will ensure that the incoming file name has not been consumed before (by polling the `/sdcard/blue_pigeon/backup` folder).
 
-In this base repo, the `rand` component of the filename is 32 hexadecimal digits/16 bytes long, which provides a collision rate of about 1 in 2^128 (trivial calculation, assuming good randomness)
+In this base repo, the `rand` component of the filename is 32 hexadecimal digits/16 bytes long, which provides a collision rate of about 1 in 2^128 (trivial calculation, assuming good randomness).
 
-The collision thresholds can be adjusted by customizing the filename structure and the verification scheme. The codes reside in `com.csg.bluepigeon.util.EncryptionManager`.
+The collision thresholds can be adjusted by customizing the filename structure and the verification scheme. The relevant codes reside in `com.csg.bluepigeon.util.EncryptionManager`.
 
 
 
