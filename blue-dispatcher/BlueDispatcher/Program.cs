@@ -30,9 +30,6 @@ namespace BlueDispatcher
             if (programOptions.Device != null && programOptions.Device != "")
                 deviceName = programOptions.Device;
 
-            Console.WriteLine("Program executed with: ");
-            Console.WriteLine($"device: {programOptions.Device}");
-
             // any info that you want your pigeon to exfiltrate can be added to the payload map e.g. mac addres
             var payload = new Dictionary<string, string>();
             string msg = programOptions.Message; //string msg = "fly pigeon fly";
