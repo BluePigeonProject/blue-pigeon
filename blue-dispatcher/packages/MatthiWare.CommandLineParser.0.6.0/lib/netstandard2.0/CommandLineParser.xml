@@ -1,0 +1,2040 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CommandLineParser</name>
+    </assembly>
+    <members>
+        <member name="T:MatthiWare.CommandLine.Abstractions.Command.Command">
+            <summary>
+            Defines a command
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.Command.OnConfigure(MatthiWare.CommandLine.Abstractions.Command.ICommandConfigurationBuilder)">
+            <summary>
+            Configures the command
+            <see cref="T:MatthiWare.CommandLine.Abstractions.Command.ICommandConfigurationBuilder"/> for more info. 
+            </summary>
+            <param name="builder"></param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.Command.OnExecute">
+            <summary>
+            Executes the command
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.Command.OnExecuteAsync(System.Threading.CancellationToken)">
+            <summary>
+            Executes the command async
+            </summary>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.Command.Command`1">
+            <summary>
+            Defines a command
+            </summary>
+            <typeparam name="TOptions">Base options of the command</typeparam>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.Command`1.OnExecute(`0)">
+            <summary>
+            Executes the command
+            </summary>
+            <param name="options">Parsed options</param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.Command`1.OnExecuteAsync(`0,System.Threading.CancellationToken)">
+            <summary>
+            Executes the command
+            </summary>
+            <param name="options">Parsed options</param>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.Command.Command`2">
+            <summary>
+            Defines a command
+            </summary>
+            <typeparam name="TOptions">Base options of the command</typeparam>
+            <typeparam name="TCommandOptions">Command options</typeparam>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.Command`2.OnConfigure(MatthiWare.CommandLine.Abstractions.Command.ICommandConfigurationBuilder{`1})">
+            <summary>
+            Configures the command
+            <see cref="T:MatthiWare.CommandLine.Abstractions.Command.ICommandConfigurationBuilder"/> for more info. 
+            </summary>
+            <param name="builder"></param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.Command`2.OnExecute(`0,`1)">
+            <summary>
+            Executes the command
+            </summary>
+            <param name="options"></param>
+            <param name="commandOptions"></param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.Command`2.OnExecuteAsync(`0,`1,System.Threading.CancellationToken)">
+            <summary>
+            Executes the command
+            </summary>
+            <param name="options"></param>
+            <param name="commandOptions"></param>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.Command.ICommandBuilder`2">
+            <summary>
+            Configures commands using a fluent interface
+            </summary>
+            <typeparam name="TSource">Command options class</typeparam>
+            <typeparam name="TOption">Base option</typeparam>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.ICommandBuilder`2.Configure``1(System.Linq.Expressions.Expression{System.Func{`1,``0}})">
+            <summary>
+            Configures an option in the model
+            </summary>
+            <typeparam name="TProperty">Type of the property</typeparam>
+            <param name="selector">Model property to configure</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.IOptionBuilder"/></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.ICommandBuilder`2.Required(System.Boolean)">
+            <summary>
+            Configures if the command is required
+            </summary>
+            <param name="required">True or false</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.Command.ICommandBuilder`2"/></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.ICommandBuilder`2.Description(System.String)">
+            <summary>
+            Describes the command, used in the usage output. 
+            </summary>
+            <param name="desc">description of the command</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.Command.ICommandBuilder`2"/></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.ICommandBuilder`2.Name(System.String)">
+            <summary>
+            Configures the command name
+            </summary>
+            <param name="name">name</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.Command.ICommandBuilder`2"/></returns>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.Command.ICommandBuilder`1">
+            <summary>
+            Generic command builder
+            </summary>
+            <typeparam name="TOption"></typeparam>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.ICommandBuilder`1.InvokeCommand(System.Boolean)">
+            <summary>
+            Configures how the command should be invoked.
+            Default behavior is to auto invoke the command.
+            </summary>
+            <param name="invoke">True if the command executor will be invoked (default), false if you want to invoke manually.</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.Command.ICommandBuilder`1"/></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.ICommandBuilder`1.Required(System.Boolean)">
+            <summary>
+            Configures if the command is required
+            </summary>
+            <param name="required">True or false</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.Command.ICommandBuilder`1"/></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.ICommandBuilder`1.Description(System.String)">
+            <summary>
+            Describes the command, used in the usage output. 
+            </summary>
+            <param name="description">description of the command</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.Command.ICommandBuilder`1"/></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.ICommandBuilder`1.Name(System.String)">
+            <summary>
+            Configures the command name
+            </summary>
+            <param name="name">name</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.Command.ICommandBuilder`1"/></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.ICommandBuilder`1.OnExecuting(System.Action{`0})">
+            <summary>
+            Configures the execution of the command
+            </summary>
+            <param name="action">The execution action</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.Command.ICommandBuilder`1"/></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.ICommandBuilder`1.OnExecutingAsync(System.Func{`0,System.Threading.CancellationToken,System.Threading.Tasks.Task})">
+            <summary>
+            Configures the execution of the command async
+            </summary>
+            <param name="action">The execution action</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.Command.ICommandBuilder`1"/></returns>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.Command.ICommandConfigurationBuilder">
+            <summary>
+            Command builder
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.ICommandConfigurationBuilder.Required(System.Boolean)">
+            <summary>
+            Configures if the command is required
+            </summary>
+            <param name="required">True or false</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.Command.ICommandConfigurationBuilder"/></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.ICommandConfigurationBuilder.Description(System.String)">
+            <summary>
+            Configures the description text for the command
+            </summary>
+            <param name="description">Description</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.Command.ICommandConfigurationBuilder"/></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.ICommandConfigurationBuilder.Name(System.String)">
+            <summary>
+            Configures the command name
+            </summary>
+            <param name="name">Command name</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.Command.ICommandConfigurationBuilder"/></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.ICommandConfigurationBuilder.AutoExecute(System.Boolean)">
+            <summary>
+            Configures if the command should auto execute
+            </summary>
+            <param name="autoExecute">True for automated execution, false for manual</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.Command.ICommandConfigurationBuilder"/></returns>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.Command.ICommandConfigurationBuilder`1">
+            <summary>
+            Builder for a generic command
+            </summary>
+            <typeparam name="TSource"></typeparam>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.ICommandConfigurationBuilder`1.Configure``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+            Configures an option in the model
+            </summary>
+            <typeparam name="TProperty">Type of the property</typeparam>
+            <param name="selector">Model property to configure</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.IOptionBuilder"/></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.ICommandConfigurationBuilder`1.Required(System.Boolean)">
+            <summary>
+            Configures if the command is required
+            </summary>
+            <param name="required">True or false</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.Command.ICommandConfigurationBuilder`1"/></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.ICommandConfigurationBuilder`1.Description(System.String)">
+            <summary>
+            Configures the description text for the command
+            </summary>
+            <param name="description">The description</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.Command.ICommandConfigurationBuilder`1"/></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.ICommandConfigurationBuilder`1.Name(System.String)">
+            <summary>
+            Configures the command name
+            </summary>
+            <param name="name">Command name</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.Command.ICommandConfigurationBuilder`1"/></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.ICommandConfigurationBuilder`1.AutoExecute(System.Boolean)">
+            <summary>
+            Configures if the command should auto execute
+            </summary>
+            <param name="autoExecute">True for automated execution, false for manual</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.Command.ICommandConfigurationBuilder`1"/></returns>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.Command.ICommandDiscoverer">
+            <summary>
+            Allows to discover <see cref="T:MatthiWare.CommandLine.Abstractions.Command.Command"/>'s from assemblies
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.ICommandDiscoverer.DiscoverCommandTypes(System.Type,System.Reflection.Assembly[])">
+            <summary>
+            Discover commands
+            </summary>
+            <param name="optionType">Only commands with this option type are valid, or non generic commands</param>
+            <param name="assemblies">List of assemblies to scan</param>
+            <returns>A list of valid commands that need to be registered</returns>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.Command.ICommandExecutor`2">
+            <summary>
+            API for configurion command executions
+            </summary>
+            <typeparam name="TOption">Base option</typeparam>
+            <typeparam name="TSource">Command option</typeparam>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.ICommandExecutor`2.InvokeCommand(System.Boolean)">
+            <summary>
+            Configures how the command should be invoked.
+            Default behavior is to auto invoke the command.
+            </summary>
+            <param name="invoke">True if the command executor will be invoked (default), false if you want to invoke manually.</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.Command.ICommandBuilder`2"/></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.ICommandExecutor`2.OnExecuting(System.Action)">
+            <summary>
+            Sets the command execute action
+            </summary>
+            <param name="action">Action to execute</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.Command.ICommandBuilder`2"/></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.ICommandExecutor`2.OnExecuting(System.Action{`0})">
+            <summary>
+            Sets the command execute action
+            </summary>
+            <param name="action">Action to execute</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.Command.ICommandBuilder`2"/></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.ICommandExecutor`2.OnExecuting(System.Action{`0,`1})">
+            <summary>
+            Sets the command execute action
+            </summary>
+            <param name="action">Action to execute</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.Command.ICommandBuilder`2"/></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.ICommandExecutor`2.OnExecutingAsync(System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task})">
+            <summary>
+            Sets the async command execute action 
+            </summary>
+            <param name="action">Action to execute</param>
+            <returns>A task of <see cref="T:MatthiWare.CommandLine.Abstractions.Command.ICommandBuilder`2"/></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.ICommandExecutor`2.OnExecutingAsync(System.Func{`0,System.Threading.CancellationToken,System.Threading.Tasks.Task})">
+            <summary>
+            Sets the async command execute action
+            </summary>
+            <param name="action">Action to execute</param>
+            <returns>A task of <see cref="T:MatthiWare.CommandLine.Abstractions.Command.ICommandBuilder`2"/></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.ICommandExecutor`2.OnExecutingAsync(System.Func{`0,`1,System.Threading.CancellationToken,System.Threading.Tasks.Task})">
+            <summary>
+            Sets the async command execute action
+            </summary>
+            <param name="action">Action to execute</param>
+            <returns>A task of <see cref="T:MatthiWare.CommandLine.Abstractions.Command.ICommandBuilder`2"/></returns>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.Command.ICommandLineCommand">
+            <summary>
+            Command configuration options
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.Command.ICommandLineCommand.Name">
+            <summary>
+            Name of the command
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.Command.ICommandLineCommand.IsRequired">
+            <summary>
+            Indicates if the command is required or not
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.Command.ICommandLineCommand.Description">
+            <summary>
+            Description of the command
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.Command.ICommandLineCommand.AutoExecute">
+            <summary>
+            Auto executes the command if set to true
+            </summary>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.Command.ICommandLineCommandContainer">
+            <summary>
+            Container that holds options and subcommands.
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.Command.ICommandLineCommandContainer.Commands">
+            <summary>
+            Read-only list of available sub-commands
+            <see cref="M:MatthiWare.CommandLine.Abstractions.ICommandLineParser`1.AddCommand``1"/> to configure or add an command
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.Command.ICommandLineCommandContainer.Options">
+            <summary>
+            Read-only list of available options for this command
+            <see cref="M:MatthiWare.CommandLine.Abstractions.ICommandLineParser`1.Configure``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})"/> to configure or add an option
+            </summary>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.Command.ICommandLineCommandParser">
+            <summary>
+            Parser for a command line command
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Command.ICommandLineCommandParser.ParseAsync(System.Threading.CancellationToken)">
+            <summary>
+            Parses the arguments
+            </summary>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.Parsing.Command.ICommandParserResult"/></returns>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.IArgument">
+            <summary>
+            Represents an argument
+            See <see cref="T:MatthiWare.CommandLine.Abstractions.ICommandLineOption"/> and <see cref="T:MatthiWare.CommandLine.Abstractions.Command.ICommandLineCommand"/> for more info.
+            </summary>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.ICommandLineOption">
+            <summary>
+            Option configuration options
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.ICommandLineOption.ShortName">
+            <summary>
+            Short name of the option
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.ICommandLineOption.LongName">
+            <summary>
+            Long name of the option
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.ICommandLineOption.Description">
+            <summary>
+            Description of the option
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.ICommandLineOption.IsRequired">
+            <summary>
+            Indicates if the option is required
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.ICommandLineOption.HasShortName">
+            <summary>
+            Indicates if a short option name has been specified
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.ICommandLineOption.HasLongName">
+            <summary>
+            Indicates if a long option name has been specified
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.ICommandLineOption.HasDefault">
+            <summary>
+            Inidicates if a default value has been specified for this option
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.ICommandLineOption.Order">
+            <summary>
+            Option order
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.ICommandLineOption.AllowMultipleValues">
+            <summary>
+            Can have multiple values?
+            </summary>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.ICommandLineParser`1">
+            <summary>
+            Command line parser
+            </summary>
+            <typeparam name="TOption">Argument options model</typeparam>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.ICommandLineParser`1.ParserOptions">
+            <summary>
+            <see cref="T:MatthiWare.CommandLine.CommandLineParserOptions"/> this parser is currently using. 
+            NOTE: In order to use the options they need to be passed using the constructor. 
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.ICommandLineParser`1.Printer">
+            <summary>
+            Utility to print usage information to the output
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.ICommandLineParser`1.Services">
+            <summary>
+            Resolver that is used to instantiate types by an given container
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.ICommandLineParser`1.Validators">
+            <summary>
+            Container for all validators
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.ICommandLineParser`1.ArgumentManager">
+            <summary>
+            Token based argument parser
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.ICommandLineParser`1.Parse(System.String[])">
+            <summary>
+            Parses the arguments
+            </summary>
+            <param name="args">CLI Arguments</param>
+            <returns>The <see cref="T:MatthiWare.CommandLine.Abstractions.Parsing.IParserResult`1"/> result</returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.ICommandLineParser`1.ParseAsync(System.String[],System.Threading.CancellationToken)">
+            <summary>
+            Parses the arguments async
+            </summary>
+            <param name="args">CLI Arguments</param>
+            <param name="cancellationToken"></param>
+            <returns>The task that resolves to the result. <see cref="T:MatthiWare.CommandLine.Abstractions.Parsing.IParserResult`1"/></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.ICommandLineParser`1.ParseAsync(System.String[])">
+            <summary>
+            Parses the arguments async
+            </summary>
+            <param name="args">CLI Arguments</param>
+            <returns>The task that resolves to the result. <see cref="T:MatthiWare.CommandLine.Abstractions.Parsing.IParserResult`1"/></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.ICommandLineParser`1.DiscoverCommands(System.Reflection.Assembly)">
+            <summary>
+            Discovers commands and registers them from any given assembly
+            </summary>
+            <param name="assembly">Assembly containing the command types</param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.ICommandLineParser`1.DiscoverCommands(System.Reflection.Assembly[])">
+            <summary>
+            Discovers commands and registers them from any given assembly
+            </summary>
+            <param name="assemblies">Assemblies containing the command types</param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.ICommandLineParser`1.Configure``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+            Configures a new or existing option
+            </summary>
+            <typeparam name="TProperty">The property type</typeparam>
+            <param name="selector">Property selector</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.IOptionBuilder"/></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.ICommandLineParser`1.AddCommand``1">
+            <summary>
+            Adds a new command  and allowes to configure it. 
+            </summary>
+            <typeparam name="TCommandOption">Command options model</typeparam>
+            <returns>A command builder, <see cref="T:MatthiWare.CommandLine.Abstractions.Command.ICommandBuilder`2"/> for more info.</returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.ICommandLineParser`1.AddCommand">
+            <summary>
+            Adds a new command and allowes to configure it. 
+            </summary>
+            <returns>A command builder, see <see cref="T:MatthiWare.CommandLine.Abstractions.Command.ICommandBuilder`1"/> for more info.</returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.ICommandLineParser`1.RegisterCommand``1">
+            <summary>
+            Registers a new command
+            </summary>
+            <typeparam name="TCommand">The command</typeparam>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.ICommandLineParser`1.RegisterCommand``2">
+            <summary>
+            Registers a new command
+            </summary>
+            <typeparam name="TCommand">The command</typeparam>
+            <typeparam name="TCommandOption">Command options model</typeparam>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.ICommandLineParser`1.RegisterCommand(System.Type,System.Type)">
+            <summary>
+            Registers a new command
+            </summary>
+            <param name="commandType">The type of the command</param>
+            <param name="optionsType">Command options model</param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.ICommandLineParser`1.RegisterCommand(System.Type)">
+            <summary>
+            Registers a new command
+            </summary>
+            <param name="commandType">The type of the command</param>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.ICommandLineParser">
+            <summary>
+            Command line parser
+            </summary>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.IOptionBuilder">
+            <summary>
+            API for configuring options
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.IOptionBuilder.Required(System.Boolean)">
+            <summary>
+            Sets if the option is required
+            </summary>
+            <param name="required">Required or not</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.IOptionBuilder"/></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.IOptionBuilder.Description(System.String)">
+            <summary>
+            Help text to be displayed for this option
+            </summary>
+            <param name="description">The description of the option</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.IOptionBuilder"></see></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.IOptionBuilder.Default(System.Object)">
+            <summary>
+            Specify the default value for this option
+            </summary>
+            <param name="defaultValue"></param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.IOptionBuilder"></see></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.IOptionBuilder.Name(System.String)">
+            <summary>
+            Configures the name for the option
+            </summary>
+            <param name="shortName">short name</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.IOptionBuilder"></see></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.IOptionBuilder.Name(System.String,System.String)">
+            <summary>
+            Configures the name for the option
+            </summary>
+            <param name="shortName">Short name</param>
+            <param name="longName">Long name</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.IOptionBuilder"></see></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.IOptionBuilder.Order(System.Int32)">
+            <summary>
+            Order in which the option will be parsed
+            </summary>
+            <param name="order"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.IOptionBuilder`1">
+            <summary>
+            API for configuring options
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.IOptionBuilder`1.Required(System.Boolean)">
+            <summary>
+            Sets if the option is required
+            </summary>
+            <param name="required">Required or not</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.IOptionBuilder"/></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.IOptionBuilder`1.Description(System.String)">
+            <summary>
+            Help text to be displayed for this option
+            </summary>
+            <param name="description">The description of the option</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.IOptionBuilder`1"></see></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.IOptionBuilder`1.Default(`0)">
+            <summary>
+            Specify the default value for this option
+            </summary>
+            <param name="defaultValue"></param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.IOptionBuilder`1"></see></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.IOptionBuilder`1.Name(System.String)">
+            <summary>
+            Configures the name for the option
+            </summary>
+            <param name="shortName">short name</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.IOptionBuilder`1"></see></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.IOptionBuilder`1.Name(System.String,System.String)">
+            <summary>
+            Configures the name for the option
+            </summary>
+            <param name="shortName">Short name</param>
+            <param name="longName">Long name</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.IOptionBuilder`1"></see></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.IOptionBuilder`1.Order(System.Int32)">
+            <summary>
+            Order in which the option will be parsed
+            </summary>
+            <param name="order"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.IOptionBuilder`1.Transform(System.Linq.Expressions.Expression{System.Func{`0,`0}})">
+            <summary>
+            Transforms the parsed value using the transform function
+            </summary>
+            <param name="transformation">Transformation function</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.IOptionBuilder`1"></see></returns>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.IOptionConfigurator`1">
+            <summary>
+            Allows options to be configured
+            </summary>
+            <typeparam name="TSource">Source type that contains the option</typeparam>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.IOptionConfigurator`1.Configure``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+            Configures if the command options
+            </summary>
+            <param name="selector">Property to configure</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.IOptionBuilder"/></returns>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.Models.ArgumentModel">
+            <summary>
+            Model for command line arguments
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.Models.ArgumentModel.Key">
+            <summary>
+            Argument identifier
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.Models.ArgumentModel.Values">
+            <summary>
+            Value of the argument
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.Models.ArgumentModel.HasValue">
+            <summary>
+            Checks if an value has been provided in the model
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Models.ArgumentModel.#ctor(System.String,System.String)">
+            <summary>
+            Creates a new instance of the argument model
+            </summary>
+            <param name="key">model identifier</param>
+            <param name="value">model value</param>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.Models.IModelInitializer">
+            <summary>
+            Tool used to initialize based on a model
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Models.IModelInitializer.InitializeModel(System.Type,System.Object,System.String,System.String)">
+            <summary>
+            Configure options and register commands from the option model
+            </summary>
+            <param name="optionType">Option model type</param>
+            <param name="caller">Caller instance</param>
+            <param name="configureMethodName">configure method name</param>
+            <param name="registerMethodName">register method name</param>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.Parsing.BaseArgumentResolver`1">
+            <summary>
+            Class to resolve arguments
+            </summary>
+            <typeparam name="TArgument">Argument type</typeparam>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Parsing.BaseArgumentResolver`1.CanResolve(MatthiWare.CommandLine.Abstractions.Models.ArgumentModel)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Parsing.BaseArgumentResolver`1.CanResolve(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Parsing.BaseArgumentResolver`1.Resolve(MatthiWare.CommandLine.Abstractions.Models.ArgumentModel)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Parsing.BaseArgumentResolver`1.Resolve(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.Parsing.Collections.IArrayResolver`1">
+            <summary>
+            Resolve array types
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Parsing.Collections.IArrayResolver`1.Resolve(MatthiWare.CommandLine.Abstractions.Models.ArgumentModel)">
+            <summary>
+            Resolves the argument from the model
+            </summary>
+            <param name="model">Argument model</param>
+            <returns>The resolved type</returns>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.Parsing.Collections.IListResolver`1">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Parsing.Collections.IListResolver`1.Resolve(MatthiWare.CommandLine.Abstractions.Models.ArgumentModel)">
+            <summary>
+            Resolves the argument from the model
+            </summary>
+            <param name="model">Argument model</param>
+            <returns>The resolved type</returns>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.Parsing.Collections.ISetResolver`1">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Parsing.Collections.ISetResolver`1.Resolve(MatthiWare.CommandLine.Abstractions.Models.ArgumentModel)">
+            <summary>
+            Resolves the argument from the model
+            </summary>
+            <param name="model">Argument model</param>
+            <returns>The resolved type</returns>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.Parsing.Command.ICommandParserResult">
+            <summary>
+            Results fo the command that has been parsed
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.Parsing.Command.ICommandParserResult.Executed">
+            <summary>
+            Indicates if the command' <see cref="M:MatthiWare.CommandLine.Abstractions.Command.Command`2.OnExecute(`0,`1)"/> method has been executed.
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.Parsing.Command.ICommandParserResult.Found">
+            <summary>
+            Indicates if the command has been found.
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.Parsing.Command.ICommandParserResult.HelpRequestedFor">
+            <summary>
+            Specifies the command/option that the help display has been requested for
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.Parsing.Command.ICommandParserResult.HelpRequested">
+            <summary>
+            Returns true if the user specified a help option
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.Parsing.Command.ICommandParserResult.SubCommands">
+            <summary>
+            Subcommands of the current command
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.Parsing.Command.ICommandParserResult.Command">
+            <summary>
+            The associated command
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.Parsing.Command.ICommandParserResult.HasErrors">
+            <summary>
+            Returns true if any exceptions occured during parsing.
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.Parsing.Command.ICommandParserResult.Errors">
+            <summary>
+            Contains the thrown exception(s) during parsing.
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Parsing.Command.ICommandParserResult.ExecuteCommandAsync(System.Threading.CancellationToken)">
+            <summary>
+            Executes the command async
+            </summary>
+            <exception cref="T:System.InvalidOperationException">
+            Result contains exceptions. For more info see <see cref="P:MatthiWare.CommandLine.Abstractions.Parsing.Command.ICommandParserResult.HasErrors"/> and <see cref="P:MatthiWare.CommandLine.Abstractions.Parsing.Command.ICommandParserResult.Errors"/> properties.
+            </exception>
+            <returns>A task</returns>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.Parsing.IArgumentManager">
+            <summary>
+            Managers the arguments
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.Parsing.IArgumentManager.UnprocessedArguments">
+            <summary>
+            Returns a read-only list of arguments that never got processed because they appeared after the <see cref="P:MatthiWare.CommandLine.CommandLineParserOptions.StopParsingAfter"/> flag.
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.Parsing.IArgumentManager.UnusedArguments">
+            <summary>
+            Returns a read-only list of unused arguments. 
+            In most cases this will be mistyped arguments that are not mapped to the actual option/command names.
+            You can pass these arguments inside the <see cref="M:MatthiWare.CommandLine.Abstractions.Usage.IUsagePrinter.PrintSuggestion(MatthiWare.CommandLine.Abstractions.Parsing.UnusedArgumentModel)"/> to get a suggestion of what could be the correct argument.
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.Parsing.IArgumentManager.StopParsingFlagSpecified">
+            <summary>
+            Returns if the <see cref="P:MatthiWare.CommandLine.CommandLineParserOptions.StopParsingAfter"/> flag was found. 
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Parsing.IArgumentManager.TryGetValue(MatthiWare.CommandLine.Abstractions.IArgument,MatthiWare.CommandLine.Abstractions.Models.ArgumentModel@)">
+            <summary>
+            Tries to get the arguments associated to the current option
+            </summary>
+            <param name="argument">the argument</param>
+            <param name="model">The result arguments</param>
+            <returns>True if arguments are found, false if not</returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Parsing.IArgumentManager.Process(System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IList{System.Exception},MatthiWare.CommandLine.Abstractions.Command.ICommandLineCommandContainer)">
+            <summary>
+            Processes the argument list
+            </summary>
+            <param name="arguments">Input arguments</param>
+            <param name="errors">List of processesing errors</param>
+            <param name="commandContainer">Container for the commands and options</param>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.Parsing.IArgumentResolver`1">
+            <summary>
+            Argument resolver
+            </summary>
+            <typeparam name="TArgument">Argument type</typeparam>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.Parsing.ICommandLineArgumentResolver">
+            <summary>
+            Argument resolver
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Parsing.ICommandLineArgumentResolver.CanResolve(MatthiWare.CommandLine.Abstractions.Models.ArgumentModel)">
+            <summary>
+            Checks if the resolver can resolve the argument
+            </summary>
+            <param name="model">argument</param>
+            <returns>True if it can resolve it correctly</returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Parsing.ICommandLineArgumentResolver.CanResolve(System.String)">
+            <summary>
+            Checks if the resolver can resolve the argument
+            </summary>
+            <param name="value">Argument</param>
+            <returns>True if it can resolve it correctly</returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Parsing.ICommandLineArgumentResolver.Resolve(MatthiWare.CommandLine.Abstractions.Models.ArgumentModel)">
+            <summary>
+            Resolves the argument from the model
+            </summary>
+            <param name="model">Argument model</param>
+            <returns>The resolved type</returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Parsing.ICommandLineArgumentResolver.Resolve(System.String)">
+            <summary>
+            Resolves the argument from the model
+            </summary>
+            <param name="value">Argument</param>
+            <returns>The resolved type</returns>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.Parsing.ICommandLineArgumentResolver`1">
+            <summary>
+            Generic argument resolver
+            </summary>
+            <typeparam name="T">Argument type</typeparam>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Parsing.ICommandLineArgumentResolver`1.Resolve(MatthiWare.CommandLine.Abstractions.Models.ArgumentModel)">
+            <summary>
+            Resolves the argument from the model
+            </summary>
+            <param name="model">Argument model</param>
+            <returns>The resolved type</returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Parsing.ICommandLineArgumentResolver`1.Resolve(System.String)">
+            <summary>
+            Resolves the argument from the model
+            </summary>
+            <param name="value">Argument</param>
+            <returns>The resolved type</returns>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.Parsing.IParser">
+            <summary>
+            API for parsing arguments
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Parsing.IParser.CanParse(MatthiWare.CommandLine.Abstractions.Models.ArgumentModel)">
+            <summary>
+            Checks if the argument can be parsed
+            </summary>
+            <param name="model"><see cref="T:MatthiWare.CommandLine.Abstractions.Models.ArgumentModel"/></param>
+            <returns>True if the arguments can be parsed, false if not.</returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Parsing.IParser.Parse(MatthiWare.CommandLine.Abstractions.Models.ArgumentModel)">
+            <summary>
+            Parses the model
+            Check <see cref="M:MatthiWare.CommandLine.Abstractions.Parsing.IParser.CanParse(MatthiWare.CommandLine.Abstractions.Models.ArgumentModel)"/> to see if this method will succeed.
+            </summary>
+            <param name="model"></param>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.Parsing.IParserResult`1">
+            <summary>
+            Parser result
+            </summary>
+            <typeparam name="TResult"></typeparam>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.Parsing.IParserResult`1.HelpRequested">
+            <summary>
+            Returns true if the user specified a help option
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.Parsing.IParserResult`1.HelpRequestedFor">
+            <summary>
+            Help was requested for this <see cref="T:MatthiWare.CommandLine.Abstractions.ICommandLineOption"/> or <see cref="T:MatthiWare.CommandLine.Abstractions.Command.ICommandLineCommand"/>
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.Parsing.IParserResult`1.Result">
+            <summary>
+            Parsed result
+            </summary>
+            <exception cref="T:System.InvalidOperationException">
+            Result contains exceptions. For more info see <see cref="P:MatthiWare.CommandLine.Abstractions.Parsing.IParserResult`1.HasErrors"/> and <see cref="P:MatthiWare.CommandLine.Abstractions.Parsing.IParserResult`1.Errors"/> properties.
+            </exception>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.Parsing.IParserResult`1.HasErrors">
+            <summary>
+            Returns true if any exceptions occured during parsing.
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.Parsing.IParserResult`1.Errors">
+            <summary>
+            Contains the thrown exception during parsing.
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Parsing.IParserResult`1.ExecuteCommandsAsync(System.Threading.CancellationToken)">
+            <summary>
+            Executes the commands
+            </summary>
+            <param name="cancellationToken">cancellation token</param>
+            /// <exception cref="T:System.InvalidOperationException">
+            Result contains exceptions. For more info see <see cref="P:MatthiWare.CommandLine.Abstractions.Parsing.IParserResult`1.HasErrors"/> and <see cref="P:MatthiWare.CommandLine.Abstractions.Parsing.IParserResult`1.Errors"/> properties.
+            </exception>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.Parsing.IParserResult`1.CommandResults">
+            <summary>
+            Read-only collection that contains the parsed commands' results. 
+            <see cref="T:MatthiWare.CommandLine.Abstractions.Parsing.Command.ICommandParserResult"/>
+            </summary>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.Usage.IConsole">
+            <summary>
+            <inheritdoc cref="T:System.Console"/>
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Usage.IConsole.WriteLine">
+            <summary>
+            <inheritdoc cref="M:System.Console.WriteLine"/>
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Usage.IConsole.WriteLine(System.String)">
+            <summary>
+            <inheritdoc cref="M:System.Console.WriteLine(System.String)"/>
+            </summary>
+            <param name="text">Input text</param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Usage.IConsole.ErrorWriteLine(System.String)">
+            <summary>
+            <inheritdoc cref="P:System.Console.Error"/>
+            </summary>
+            <param name="text">Input text</param>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.Usage.IConsole.ForegroundColor">
+            <summary>
+            <inheritdoc cref="P:System.Console.ForegroundColor"/>
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Usage.IConsole.ResetColor">
+            <summary>
+            <inheritdoc cref="M:System.Console.ResetColor"/>
+            </summary>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.Usage.IEnvironmentVariablesService">
+            <summary>
+            Environment variables 
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.Usage.IEnvironmentVariablesService.NoColorRequested">
+            <summary>
+            Inidicates if NO_COLOR environment variable has been set
+            https://no-color.org/
+            </summary>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.Usage.ISuggestionProvider">
+            <summary>
+            Creates suggestions based on input
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Usage.ISuggestionProvider.GetSuggestions(System.String,MatthiWare.CommandLine.Abstractions.Command.ICommandLineCommandContainer)">
+            <summary>
+            Gets a list of matching suggestions
+            </summary>
+            <param name="input">The wrongly typed input</param>
+            <param name="command">The current command context</param>
+            <returns>A sorted list of suggestions, first item being the best match.</returns>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.Usage.IUsageBuilder">
+            <summary>
+            Output builder
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Usage.IUsageBuilder.Build">
+            <summary>
+            Generates the output 
+            </summary>
+            <returns>Output string</returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Usage.IUsageBuilder.AddUsage(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Add usage
+            </summary>
+            <param name="name">Name of the applpication</param>
+            <param name="hasOptions">Indicates if the output contains options</param>
+            <param name="hasCommands">Indicates if the output contains commands</param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Usage.IUsageBuilder.AddOptions(System.Collections.Generic.IEnumerable{MatthiWare.CommandLine.Abstractions.ICommandLineOption})">
+            <summary>
+            Add all options
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Usage.IUsageBuilder.AddOption(MatthiWare.CommandLine.Abstractions.ICommandLineOption)">
+            <summary>
+            Add a specific option
+            </summary>
+            <param name="option"></param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Usage.IUsageBuilder.AddCommandDescriptions(System.Collections.Generic.IEnumerable{MatthiWare.CommandLine.Abstractions.Command.ICommandLineCommand})">
+            <summary>
+            Adds all command descriptions
+            </summary>
+            <param name="commands"></param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Usage.IUsageBuilder.AddCommandDescription(MatthiWare.CommandLine.Abstractions.Command.ICommandLineCommand)">
+            <summary>
+            Adds a specific command description
+            </summary>
+            <param name="command"></param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Usage.IUsageBuilder.AddCommand(System.String,MatthiWare.CommandLine.Abstractions.Command.ICommandLineCommand)">
+            <summary>
+            Adds a command to the output builder
+            </summary>
+            <param name="name"></param>
+            <param name="command"></param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Usage.IUsageBuilder.AddCommand(System.String,MatthiWare.CommandLine.Abstractions.Command.ICommandLineCommandContainer)">
+            <summary>
+            Adds a command to the output builder
+            </summary>
+            <param name="name"></param>
+            <param name="container"></param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Usage.IUsageBuilder.AddErrors(System.Collections.Generic.IReadOnlyCollection{System.Exception})">
+            <summary>
+            Adds the errors to the output builder
+            </summary>
+            <param name="errors"></param>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.Usage.IUsagePrinter">
+            <summary>
+            CLI Usage Output Printer
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.Usage.IUsagePrinter.Builder">
+            <summary>
+            Gets the usage builder <see cref="T:MatthiWare.CommandLine.Abstractions.Usage.IUsageBuilder"/>
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Usage.IUsagePrinter.PrintUsage">
+            <summary>
+            Print global usage
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Usage.IUsagePrinter.PrintUsage(MatthiWare.CommandLine.Abstractions.IArgument)">
+            <summary>
+            Print an argument
+            </summary>
+            <param name="argument">The given argument</param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Usage.IUsagePrinter.PrintUsage(MatthiWare.CommandLine.Abstractions.Command.ICommandLineCommand)">
+            <summary>
+            Print command usage
+            </summary>
+            <param name="command">The given command</param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Usage.IUsagePrinter.PrintCommandUsage(MatthiWare.CommandLine.Abstractions.Command.ICommandLineCommand)">
+            <summary>
+            Print command usage
+            </summary>
+            <param name="command">The given command</param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Usage.IUsagePrinter.PrintUsage(MatthiWare.CommandLine.Abstractions.ICommandLineOption)">
+            <summary>
+            Print option usage
+            </summary>
+            <param name="option">The given option</param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Usage.IUsagePrinter.PrintOptionUsage(MatthiWare.CommandLine.Abstractions.ICommandLineOption)">
+            <summary>
+            Print option usage
+            </summary>
+            <param name="option">The given option</param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Usage.IUsagePrinter.PrintErrors(System.Collections.Generic.IReadOnlyCollection{System.Exception})">
+            <summary>
+            Print errors
+            </summary>
+            <param name="errors">list of errors</param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Usage.IUsagePrinter.PrintSuggestion(MatthiWare.CommandLine.Abstractions.Parsing.UnusedArgumentModel)">
+            <summary>
+            Prints suggestions based on the input arguments
+            </summary>
+            <param name="model">Input model</param>
+            <returns>True if a suggestion was found and printed, otherwise false</returns>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.Validations.IValidator">
+            <summary>
+            Validator
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Validations.IValidator.ValidateAsync(System.Object,System.Threading.CancellationToken)">
+            <summary>
+            Validates an object async
+            </summary>
+            <param name="object">Item to validate</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.Validations.IValidationResult"/></returns>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.Validations.IValidatorsContainer">
+            <summary>
+            Contains all the validators registered
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Validations.IValidatorsContainer.AddValidator``1(MatthiWare.CommandLine.Abstractions.Validations.IValidator{``0})">
+            <summary>
+            Adds a validator
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <param name="validator"></param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Validations.IValidatorsContainer.AddValidator(System.Type,MatthiWare.CommandLine.Abstractions.Validations.IValidator)">
+            <summary>
+            Adds a validator
+            </summary>
+            <param name="key"></param>
+            <param name="validator"></param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Validations.IValidatorsContainer.AddValidator``2">
+            <summary>
+            Adds a validator
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <typeparam name="V"></typeparam>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Validations.IValidatorsContainer.AddValidator(System.Type,System.Type)">
+            <summary>
+            Adds a validator
+            </summary>
+            <param name="key"></param>
+            <param name="validator"></param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Validations.IValidatorsContainer.HasValidatorFor``1">
+            <summary>
+            Checks if a validator exists for a given type
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Validations.IValidatorsContainer.HasValidatorFor(System.Type)">
+            <summary>
+            Checks if a validator exists for a given type
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Validations.IValidatorsContainer.GetValidators``1">
+            <summary>
+            Returns a read-only list of validators for a given type
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Validations.IValidatorsContainer.GetValidators(System.Type)">
+            <summary>
+            Returns a read-only list of validators for a given type
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.Validations.IValidator`1">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Validations.IValidator`1.Validate(`0)">
+            <summary>
+            Validates an object
+            </summary>
+            <param name="object">Item to validate</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.Validations.IValidationResult"/></returns>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Abstractions.Validations.ValidationConfigurationBase">
+            <summary>
+            Base validation configuration provider. 
+            Needs to be inherited when implementing a specific validations provider
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Abstractions.Validations.ValidationConfigurationBase.Validators">
+            <summary>
+            Gets a container of all validators
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Abstractions.Validations.ValidationConfigurationBase.#ctor(MatthiWare.CommandLine.Abstractions.Validations.IValidatorsContainer)">
+            <summary>
+            Create instance of the validation configuration base
+            </summary>
+            <param name="validators">validator container</param>
+        </member>
+        <member name="T:MatthiWare.CommandLine.CommandLineParser">
+            <summary>
+            Command line parser
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.CommandLineParser.#ctor">
+            <summary>
+            Creates a new instance of the commandline parser
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.CommandLineParser.#ctor(MatthiWare.CommandLine.CommandLineParserOptions)">
+            <summary>
+            Creates a new instance of the commandline parser
+            </summary>
+            <param name="parserOptions">The parser options</param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.CommandLineParser.#ctor(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Creates a new instance of the commandline parser
+            </summary>
+            <param name="serviceCollection">Services collection to use, if null will create an internal one</param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.CommandLineParser.#ctor(MatthiWare.CommandLine.CommandLineParserOptions,Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Creates a new instance of the commandline parser
+            </summary>
+            <param name="parserOptions">options that the parser will use</param>
+            <param name="serviceCollection">Services collection to use, if null will create an internal one</param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.CommandLineParser.#ctor(System.IServiceProvider)">
+            <summary>
+            Creates a new instance of the commandline parser
+            </summary>
+            <param name="serviceProvider">Services provider to use</param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.CommandLineParser.#ctor(MatthiWare.CommandLine.CommandLineParserOptions,System.IServiceProvider)">
+            <summary>
+            Creates a new instance of the commandline parser
+            </summary>
+            <param name="parserOptions">options that the parser will use</param>
+            <param name="serviceProvider">Services Provider to use</param>
+        </member>
+        <member name="T:MatthiWare.CommandLine.CommandLineParserOptions">
+            <summary>
+            Configuration options for <see cref="T:MatthiWare.CommandLine.CommandLineParser"></see>
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.CommandLineParserOptions.PrefixShortOption">
+            <summary>
+            Prefix for the short option
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.CommandLineParserOptions.PrefixLongOption">
+            <summary>
+            Prefix for the long option
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.CommandLineParserOptions.PostfixOption">
+            <summary>
+            Postfix for the long option
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.CommandLineParserOptions.StopParsingAfter">
+            <summary>
+            Stops parsing of remaining arguments after this has been found
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.CommandLineParserOptions.HelpOptionName">
+            <summary>
+            Help option name. 
+            Accepts both formatted and unformatted help name. 
+            If the name is a single string it will use the <see cref="P:MatthiWare.CommandLine.CommandLineParserOptions.HelpOptionName"/>
+            If the name is split for example h|help it will use the following format <![CDATA[<shortOption>|<longOption>]]>
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.CommandLineParserOptions.EnableHelpOption">
+            <summary>
+            Enable or disable the help option
+            <see cref="P:MatthiWare.CommandLine.CommandLineParserOptions.HelpOptionName"/>
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.CommandLineParserOptions.AutoPrintUsageAndErrors">
+            <summary>
+            Enables or disables the automatic usage and error printing
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.CommandLineParserOptions.AppName">
+            <summary>
+            Sets the application name. Will use the <see cref="P:System.Diagnostics.Process.ProcessName"/> by default if none is specified.
+            </summary>
+        </member>
+        <member name="T:MatthiWare.CommandLine.CommandLineParser`1">
+            <summary>
+            Command line parser
+            </summary>
+            <typeparam name="TOption">Options model</typeparam>
+        </member>
+        <member name="P:MatthiWare.CommandLine.CommandLineParser`1.ArgumentManager">
+            <inheritdoc/>
+        </member>
+        <member name="P:MatthiWare.CommandLine.CommandLineParser`1.ParserOptions">
+            <inheritdoc/>
+        </member>
+        <member name="P:MatthiWare.CommandLine.CommandLineParser`1.Printer">
+            <inheritdoc/>
+        </member>
+        <member name="P:MatthiWare.CommandLine.CommandLineParser`1.Options">
+            <inheritdoc/>
+        </member>
+        <member name="P:MatthiWare.CommandLine.CommandLineParser`1.Services">
+            <inheritdoc/>
+        </member>
+        <member name="P:MatthiWare.CommandLine.CommandLineParser`1.Commands">
+            <inheritdoc/>
+        </member>
+        <member name="P:MatthiWare.CommandLine.CommandLineParser`1.Validators">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.CommandLineParser`1.#ctor">
+            <summary>
+            Creates a new instance of the commandline parser
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.CommandLineParser`1.#ctor(MatthiWare.CommandLine.CommandLineParserOptions)">
+            <summary>
+            Creates a new instance of the commandline parser
+            </summary>
+            <param name="parserOptions">The parser options</param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.CommandLineParser`1.#ctor(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Creates a new instance of the commandline parser
+            </summary>
+            <param name="servicesCollection">container resolver to use</param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.CommandLineParser`1.#ctor(MatthiWare.CommandLine.CommandLineParserOptions,Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Creates a new instance of the commandline parser
+            </summary>
+            <param name="servicesCollection">container resolver to use</param>
+            <param name="parserOptions">The options the parser will use</param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.CommandLineParser`1.#ctor(System.IServiceProvider)">
+            <summary>
+            Creates a new instance of the commandline parser
+            </summary>
+            <param name="serviceProvider">Service provider to resolve internal services with</param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.CommandLineParser`1.#ctor(MatthiWare.CommandLine.CommandLineParserOptions,System.IServiceProvider)">
+            <summary>
+            Creates a new instance of the commandline parser
+            </summary>
+            <param name="serviceProvider">Service provider to resolve internal services with</param>
+            <param name="parserOptions">The options the parser will use</param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.CommandLineParser`1.Configure``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+            Configures an option in the model
+            </summary>
+            <typeparam name="TProperty">Type of the property</typeparam>
+            <param name="selector">Model property to configure</param>
+            <returns><see cref="T:MatthiWare.CommandLine.Abstractions.IOptionBuilder"/></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.CommandLineParser`1.Parse(System.String[])">
+            <summary>
+            Parses the commandline arguments
+            </summary>
+            <param name="args">arguments from the commandline</param>
+            <returns>The result of the parsing, <see cref="T:MatthiWare.CommandLine.Abstractions.Parsing.IParserResult`1"/></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.CommandLineParser`1.ParseAsync(System.String[])">
+            <summary>
+            Parses the commandline arguments async
+            </summary>
+            <param name="args">arguments from the commandline</param>
+            <returns>The result of the parsing, <see cref="T:MatthiWare.CommandLine.Abstractions.Parsing.IParserResult`1"/></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.CommandLineParser`1.ParseAsync(System.String[],System.Threading.CancellationToken)">
+            <summary>
+            Parses the commandline arguments async
+            </summary>
+            <param name="args">arguments from the commandline</param>
+            <param name="cancellationToken"></param>
+            <returns>The result of the parsing, <see cref="T:MatthiWare.CommandLine.Abstractions.Parsing.IParserResult`1"/></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.CommandLineParser`1.AddCommand``1">
+            <summary>
+            Adds a command to the parser
+            </summary>
+            <typeparam name="TCommandOption">Options model for the command</typeparam>
+            <returns>Builder for the command, <see cref="T:MatthiWare.CommandLine.Abstractions.Command.ICommandBuilder`2"/></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.CommandLineParser`1.RegisterCommand``1">
+            <summary>
+            Registers a command type
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.CommandLineParser`1.RegisterCommand(System.Type)">
+            <summary>
+            Registers a new command
+            </summary>
+            <param name="commandType">The type of the command</param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.CommandLineParser`1.RegisterCommand``2">
+            <summary>
+            Registers a command type
+            </summary>
+            <typeparam name="TCommand">Command type, must be inherit <see cref="T:MatthiWare.CommandLine.Abstractions.Command.Command`2"/></typeparam>
+            <typeparam name="TCommandOption">The command options</typeparam>
+        </member>
+        <member name="M:MatthiWare.CommandLine.CommandLineParser`1.RegisterCommand(System.Type,System.Type)">
+            <summary>
+            Registers a new command
+            </summary>
+            <param name="commandType">The type of the command</param>
+            <param name="optionsType">Command options model</param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.CommandLineParser`1.AddCommand">
+            <summary>
+            Adds a command to the parser
+            </summary>
+            <returns>Builder for the command, <see cref="T:MatthiWare.CommandLine.Abstractions.Command.ICommandBuilder`1"/></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.CommandLineParser`1.InitialzeModel">
+            <summary>
+            Initializes the model class with the attributes specified.
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.CommandLineParser`1.DiscoverCommands(System.Reflection.Assembly)">
+            <summary>
+            Discovers commands and registers them from any given assembly
+            </summary>
+            <param name="assembly">Assembly containing the command types</param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.CommandLineParser`1.DiscoverCommands(System.Reflection.Assembly[])">
+            <summary>
+            Discovers commands and registers them from any given assembly
+            </summary>
+            <param name="assemblies">Assemblies containing the command types</param>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Core.Attributes.DefaultValueAttribute">
+            <summary>
+            Specifies the default value of the property
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Core.Attributes.DefaultValueAttribute.DefaultValue">
+            <summary>
+            Default value
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Attributes.DefaultValueAttribute.#ctor(System.Object)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="defaultValue">default value</param>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Core.Attributes.DescriptionAttribute">
+            <summary>
+            Specifies the description of the options
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Core.Attributes.DescriptionAttribute.Description">
+            <summary>
+            Description
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Attributes.DescriptionAttribute.#ctor(System.String)">
+            <summary>
+            Specifies the description of the options
+            </summary>
+            <param name="description">description text</param>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Core.Attributes.NameAttribute">
+            <summary>
+            Specifies the name of the option/command
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Core.Attributes.NameAttribute.ShortName">
+            <summary>
+            Short version
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Core.Attributes.NameAttribute.LongName">
+            <summary>
+            Long version
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Attributes.NameAttribute.#ctor(System.String)">
+            <summary>
+            Specifies the name
+            </summary>
+            <param name="shortName">short name</param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Attributes.NameAttribute.#ctor(System.String,System.String)">
+            <summary>
+            Specified the name
+            </summary>
+            <param name="shortName">short name</param>
+            <param name="longName">long name</param>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Core.Attributes.OptionOrderAttribute">
+            <summary>
+            Give an order to options
+            </summary>
+            <example>app.exe move "first/argument/path" "second/argument/path"</example>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Core.Attributes.OptionOrderAttribute.Order">
+            <summary>
+            Order in which the options will be parsed (Ascending). 
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Attributes.OptionOrderAttribute.#ctor(System.Int32)">
+            <summary>
+            Assign an order to options
+            </summary>
+            <param name="order">Order in which options will be parsed (Ascending)</param>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Core.Attributes.RequiredAttribute">
+            <summary>
+            Specified if the command/option is required
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Core.Attributes.RequiredAttribute.Required">
+            <summary>
+            Is it required?
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Attributes.RequiredAttribute.#ctor(System.Boolean)">
+            <summary>
+            Specifies if the command/option is required
+            </summary>
+            <param name="required">True if required, false if not</param>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Core.Command.CommandDiscoverer">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Command.CommandDiscoverer.DiscoverCommandTypes(System.Type,System.Reflection.Assembly[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Command.CommandLineCommand`2.InitialzeModel">
+            <summary>
+            Initializes the model class with the attributes specified.
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Command.CommandLineCommand`2.RegisterCommand``1">
+            <summary>
+            Registers a command type
+            </summary>
+            <typeparam name="TCommand">Command type, must be inherit <see cref="T:MatthiWare.CommandLine.Abstractions.Command.Command"/></typeparam>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Command.CommandLineCommand`2.RegisterCommand``2">
+            <summary>
+            Registers a command type
+            </summary>
+            <typeparam name="TCommand"></typeparam>
+            <typeparam name="TActualCommandOption"></typeparam>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Core.DependencyInjectionExtensions">
+            <summary>
+            Extension methods to allow DI services to be registered.
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.DependencyInjectionExtensions.AddInternalCommandLineParserServices``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,MatthiWare.CommandLine.CommandLineParser{``0},MatthiWare.CommandLine.CommandLineParserOptions)">
+            <summary>
+            Adds internal services used by <see cref="T:MatthiWare.CommandLine.CommandLineParser"/>. 
+            This won't overwrite existing services.
+            </summary>
+            <typeparam name="TOption">Base option type</typeparam>
+            <param name="services">Current service collection</param>
+            <param name="parser">Current instance reference</param>
+            <param name="options">Current options reference</param>
+            <returns>Input service collection to allow method chaining</returns>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Core.Exceptions.BaseParserException">
+            <summary>
+            Base exception class that exposes the <see cref="P:MatthiWare.CommandLine.Core.Exceptions.BaseParserException.Argument"/> this exception is about. 
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Core.Exceptions.BaseParserException.Argument">
+            <summary>
+            The argument this exception is for. 
+            <see cref="T:MatthiWare.CommandLine.Abstractions.ICommandLineOption"/> and <see cref="T:MatthiWare.CommandLine.Abstractions.Command.ICommandLineCommand"/>
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Exceptions.BaseParserException.#ctor(MatthiWare.CommandLine.Abstractions.IArgument,System.String,System.Exception)">
+            <summary>
+            Creates a new CLI Parser Exception for a given argument
+            </summary>
+            <param name="argument">The argument</param>
+            <param name="message">The exception message</param>
+            <param name="innerException">Optional inner exception</param>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Core.Exceptions.CommandExecutionFailedException">
+            <summary>
+            Command failed to execute exception
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Exceptions.CommandExecutionFailedException.#ctor(MatthiWare.CommandLine.Abstractions.Command.ICommandLineCommand,System.Exception)">
+            <summary>
+            Command failed to execute exception
+            </summary>
+            <param name="command">Command that failed</param>
+            <param name="innerException">Actual exception</param>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Core.Exceptions.CommandNotFoundException">
+            <summary>
+            Indicitates that a configured required command is not found.
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Core.Exceptions.CommandNotFoundException.Command">
+            <summary>
+            The command that was not found
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Exceptions.CommandNotFoundException.#ctor(MatthiWare.CommandLine.Abstractions.Command.ICommandLineCommand)">
+            <summary>
+            Creates a new command not found exception
+            </summary>
+            <param name="cmd">The command that was not found</param>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Core.Exceptions.CommandParseException">
+            <summary>
+            Unable to parse the command
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Core.Exceptions.CommandParseException.Command">
+            <summary>
+            Command that caused the parsing error
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Exceptions.CommandParseException.#ctor(MatthiWare.CommandLine.Abstractions.Command.ICommandLineCommand,System.Collections.Generic.IReadOnlyCollection{System.Exception})">
+            <summary>
+            Creates a new command parse exception
+            </summary>
+            <param name="command">the failed command</param>
+            <param name="innerExceptions">collection of inner exception</param>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Core.Exceptions.OptionNotFoundException">
+            <summary>
+            Indiciates the configured required option is not found
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Core.Exceptions.OptionNotFoundException.Option">
+            <summary>
+            Option that was not found
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Exceptions.OptionNotFoundException.#ctor(MatthiWare.CommandLine.Abstractions.ICommandLineOption)">
+            <summary>
+            Creates a new <see cref="T:MatthiWare.CommandLine.Core.Exceptions.OptionNotFoundException"/> for a given <see cref="T:MatthiWare.CommandLine.Abstractions.ICommandLineOption"/>
+            </summary>
+            <param name="option">The option that was not found</param>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Core.Exceptions.OptionParseException">
+            <summary>
+            Indicates that an option was unable to be parsed
+            This could be caused by an missing <see cref="T:MatthiWare.CommandLine.Abstractions.Parsing.ICommandLineArgumentResolver"/>.
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Core.Exceptions.OptionParseException.Option">
+            <summary>
+            The option that failed
+            </summary>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Core.Exceptions.OptionParseException.ArgumentModel">
+            <summary>
+            Provided argument model
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Exceptions.OptionParseException.#ctor(MatthiWare.CommandLine.Abstractions.ICommandLineOption,MatthiWare.CommandLine.Abstractions.Models.ArgumentModel)">
+            <summary>
+            Creates a new <see cref="T:MatthiWare.CommandLine.Core.Exceptions.OptionParseException"/>
+            </summary>
+            <param name="option">The failed option</param>
+            <param name="argModel">The specified argument</param>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Core.Models.ModelInitializer">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Models.ModelInitializer.InitializeModel(System.Type,System.Object,System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Core.Parsing.ArgumentManager">
+            <inheritdoc/>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Core.Parsing.ArgumentManager.UnusedArguments">
+            <inheritdoc/>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Core.Parsing.ArgumentManager.UnprocessedArguments">
+            <inheritdoc/>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Core.Parsing.ArgumentManager.StopParsingFlagSpecified">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Parsing.ArgumentManager.TryGetValue(MatthiWare.CommandLine.Abstractions.IArgument,MatthiWare.CommandLine.Abstractions.Models.ArgumentModel@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Parsing.ArgumentManager.#ctor(MatthiWare.CommandLine.CommandLineParserOptions,Microsoft.Extensions.Logging.ILogger{MatthiWare.CommandLine.CommandLineParser})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Parsing.ArgumentManager.Process(System.Collections.Generic.IReadOnlyList{System.String},System.Collections.Generic.IList{System.Exception},MatthiWare.CommandLine.Abstractions.Command.ICommandLineCommandContainer)">
+            <inheritdoc/>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Core.Parsing.Resolvers.Collections.ArrayResolver`1">
+            <inheritdoc />
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Parsing.Resolvers.Collections.ArrayResolver`1.#ctor(Microsoft.Extensions.Logging.ILogger{MatthiWare.CommandLine.CommandLineParser},MatthiWare.CommandLine.Abstractions.Parsing.IArgumentResolver{`0})">
+            <inheritdoc />
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Parsing.Resolvers.Collections.ArrayResolver`1.CanResolve(MatthiWare.CommandLine.Abstractions.Models.ArgumentModel)">
+            <inheritdoc />
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Parsing.Resolvers.Collections.ArrayResolver`1.CanResolve(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Parsing.Resolvers.Collections.ArrayResolver`1.Resolve(MatthiWare.CommandLine.Abstractions.Models.ArgumentModel)">
+            <inheritdoc />
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Parsing.Resolvers.Collections.ArrayResolver`1.Resolve(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="T:MatthiWare.CommandLine.Core.Parsing.Resolvers.Collections.ListResolver`1">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Parsing.Resolvers.Collections.ListResolver`1.#ctor(Microsoft.Extensions.Logging.ILogger{MatthiWare.CommandLine.CommandLineParser},MatthiWare.CommandLine.Abstractions.Parsing.IArgumentResolver{`0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Parsing.Resolvers.Collections.ListResolver`1.CanResolve(MatthiWare.CommandLine.Abstractions.Models.ArgumentModel)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Parsing.Resolvers.Collections.ListResolver`1.CanResolve(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Parsing.Resolvers.Collections.ListResolver`1.Resolve(MatthiWare.CommandLine.Abstractions.Models.ArgumentModel)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Parsing.Resolvers.Collections.ListResolver`1.Resolve(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Core.Parsing.Resolvers.Collections.SetResolver`1">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Parsing.Resolvers.Collections.SetResolver`1.#ctor(Microsoft.Extensions.Logging.ILogger{MatthiWare.CommandLine.CommandLineParser},MatthiWare.CommandLine.Abstractions.Parsing.IArgumentResolver{`0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Parsing.Resolvers.Collections.SetResolver`1.CanResolve(MatthiWare.CommandLine.Abstractions.Models.ArgumentModel)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Parsing.Resolvers.Collections.SetResolver`1.CanResolve(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Parsing.Resolvers.Collections.SetResolver`1.Resolve(MatthiWare.CommandLine.Abstractions.Models.ArgumentModel)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Parsing.Resolvers.Collections.SetResolver`1.Resolve(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Parsing.Resolvers.DefaultResolver`1.FindTryParse(System.Reflection.MethodInfo)">
+            <summary>
+            Finds the Type.TryParse(String, IFormatProvider, out T result) method
+            </summary>
+            <param name="method"></param>
+            <returns>True or false</returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Parsing.Resolvers.DefaultResolver`1.FindParse(System.Reflection.MethodInfo)">
+            <summary>
+            Finds the Type.TryParse(String, IFormatProvider, out T result) method
+            </summary>
+            <param name="method"></param>
+            <returns>True or false</returns>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Core.TypedInstanceCache`1">
+            <summary>
+            A strongly-typed instance cache
+            </summary>
+            <typeparam name="TValue"></typeparam>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.TypedInstanceCache`1.#ctor(System.IServiceProvider)">
+            <summary>
+            Creates an instance of the strongly-typed instance cache
+            </summary>
+            <param name="serviceProvider"></param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.TypedInstanceCache`1.Add(`0)">
+            <summary>
+            Adds a new instance to the cache
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.TypedInstanceCache`1.Add(System.Type)">
+            <summary>
+            Adds a type to the cache that will be resolved later
+            </summary>
+            <param name="type"></param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.TypedInstanceCache`1.Get">
+            <summary>
+            Gets the values from the cache. This will instantiate unresolved items. 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Usage.DamerauLevenshteinSuggestionProvider.FindDistance(System.String@,System.String@)">
+            <summary>
+            Damerau-Levenshtein Distance algorithm implemented using Optimal String Alignment Distance. 
+            </summary>
+            <remarks>
+            https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance
+            </remarks>
+            <param name="input">string A</param>
+            <param name="suggestion">string B</param>
+            <returns>Damerau-Levenshtein Distance</returns>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Core.Usage.EnvironmentVariableService">
+            <inheritdoc/>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Core.Usage.EnvironmentVariableService.NoColorRequested">
+            <inheritdoc/>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Core.Usage.SystemConsole">
+            <inheritdoc/>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Core.Usage.SystemConsole.ForegroundColor">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Usage.SystemConsole.ErrorWriteLine(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Usage.SystemConsole.ResetColor">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Usage.SystemConsole.WriteLine(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Usage.SystemConsole.WriteLine">
+            <inheritdoc/>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Core.Usage.UsageBuilder">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Usage.UsageBuilder.#ctor(MatthiWare.CommandLine.CommandLineParserOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Usage.UsageBuilder.Build">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Usage.UsageBuilder.AddUsage(System.String,System.Boolean,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Usage.UsageBuilder.AddCommand(System.String,MatthiWare.CommandLine.Abstractions.Command.ICommandLineCommand)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Usage.UsageBuilder.AddCommand(System.String,MatthiWare.CommandLine.Abstractions.Command.ICommandLineCommandContainer)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Usage.UsageBuilder.AddCommandDescription(MatthiWare.CommandLine.Abstractions.Command.ICommandLineCommand)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Usage.UsageBuilder.AddCommandDescriptions(System.Collections.Generic.IEnumerable{MatthiWare.CommandLine.Abstractions.Command.ICommandLineCommand})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Usage.UsageBuilder.AddOption(MatthiWare.CommandLine.Abstractions.ICommandLineOption)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Usage.UsageBuilder.AddOptions(System.Collections.Generic.IEnumerable{MatthiWare.CommandLine.Abstractions.ICommandLineOption})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Usage.UsageBuilder.AddErrors(System.Collections.Generic.IReadOnlyCollection{System.Exception})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Usage.UsageBuilder.AddSuggestionHeader(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Usage.UsageBuilder.AddSuggestion(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Core.Usage.UsagePrinter">
+            <inheritdoc/>
+        </member>
+        <member name="P:MatthiWare.CommandLine.Core.Usage.UsagePrinter.Builder">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Usage.UsagePrinter.#ctor(MatthiWare.CommandLine.Abstractions.Usage.IConsole,MatthiWare.CommandLine.Abstractions.Command.ICommandLineCommandContainer,MatthiWare.CommandLine.Abstractions.Usage.IUsageBuilder,MatthiWare.CommandLine.Abstractions.Usage.IEnvironmentVariablesService,MatthiWare.CommandLine.Abstractions.Usage.ISuggestionProvider)">
+            <summary>
+            Creates a new CLI output usage printer
+            </summary>
+            <param name="console"></param>
+            <param name="container"></param>
+            <param name="builder"></param>
+            <param name="environmentVariablesService"></param>
+            <param name="suggestionProvider"></param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Usage.UsagePrinter.PrintErrors(System.Collections.Generic.IReadOnlyCollection{System.Exception})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Usage.UsagePrinter.PrintCommandUsage(MatthiWare.CommandLine.Abstractions.Command.ICommandLineCommand)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Usage.UsagePrinter.PrintOptionUsage(MatthiWare.CommandLine.Abstractions.ICommandLineOption)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Usage.UsagePrinter.PrintUsage">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Usage.UsagePrinter.PrintUsage(MatthiWare.CommandLine.Abstractions.IArgument)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Usage.UsagePrinter.PrintUsage(MatthiWare.CommandLine.Abstractions.Command.ICommandLineCommand)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Usage.UsagePrinter.PrintUsage(MatthiWare.CommandLine.Abstractions.ICommandLineOption)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Usage.UsagePrinter.PrintSuggestion(MatthiWare.CommandLine.Abstractions.Parsing.UnusedArgumentModel)">
+            <inheritdoc/>
+        </member>
+        <member name="T:MatthiWare.CommandLine.Core.Utils.ExtensionMethods">
+            <summary>
+            Utility extension methods used the command line parser or other internal classes
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Utils.ExtensionMethods.IsAssignableToGenericType(System.Type,System.Type)">
+            <summary>
+            Checks if an open generic type is assignable to the generic type
+            
+            For more info see:
+            https://stackoverflow.com/a/5461399/6058174
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Utils.ExtensionMethods.InvokeGenericMethod(System.Reflection.MethodInfo,System.Reflection.PropertyInfo,System.Object,System.Object[])">
+            <summary>
+            Invokes a generic method
+            </summary>
+            <param name="method">Method to invoke</param>
+            <param name="propertyInfo">Generic argument to use</param>
+            <param name="source">Instance object</param>
+            <param name="args">Method arguments</param>
+            <returns>Method invocation result</returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Utils.ExtensionMethods.ExecuteGenericRegisterCommand(System.Object,System.String,System.Type,System.Type[])">
+            <summary>
+            Execute generic register command
+            </summary>
+            <param name="obj">Instance object</param>
+            <param name="methodName">Register method name</param>
+            <param name="cmdType">Type of the command</param>
+            <param name="optionTypes">Option types</param>
+            <returns></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Utils.ExtensionMethods.WithoutPreAndPostfixes(System.String,MatthiWare.CommandLine.CommandLineParserOptions)">
+            <summary>
+            Splits on postfix
+            </summary>
+            <param name="self"></param>
+            <param name="settings"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Utils.ExtensionMethods.GetLambdaExpression(System.Reflection.PropertyInfo,System.String@)">
+            <summary>
+            Creates lambda expression from property info
+            </summary>
+            <param name="propInfo"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Utils.ExtensionMethods.AppendIf(System.Text.StringBuilder,System.Boolean,System.String)">
+            <summary>
+            Append text if condition evaluates to true
+            </summary>
+            <param name="self"></param>
+            <param name="contition"></param>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MatthiWare.CommandLine.Core.Utils.ExtensionMethods.EqualsIgnoreCase(System.String,System.String)">
+            <summary>
+            Compares strings using <see cref="M:System.String.Equals(System.String,System.String,System.StringComparison)"/> with <see cref="F:System.StringComparison.InvariantCultureIgnoreCase"/>.
+            </summary>
+            <param name="input"></param>
+            <param name="equals"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MatthiWare.CommandLine.DependencyInjectionExtensions">
+            <summary>
+            Extension methods to allow DI services to be registered.
+            </summary>
+        </member>
+        <member name="M:MatthiWare.CommandLine.DependencyInjectionExtensions.AddCommandLineParser``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,MatthiWare.CommandLine.CommandLineParserOptions)">
+            <summary>
+            Adds <see cref="T:MatthiWare.CommandLine.Abstractions.ICommandLineParser`1"/> to the services
+            This won't overwrite existing services.
+            </summary>
+            <typeparam name="TOption">Base option type</typeparam>
+            <param name="services">Current service collection</param>
+            <param name="options">Current options reference</param>
+        </member>
+        <member name="M:MatthiWare.CommandLine.DependencyInjectionExtensions.AddCommandLineParser(Microsoft.Extensions.DependencyInjection.IServiceCollection,MatthiWare.CommandLine.CommandLineParserOptions)">
+            <summary>
+            Adds <see cref="T:MatthiWare.CommandLine.CommandLineParser"/> to the services
+            This won't overwrite existing services.
+            </summary>
+            <param name="services">Current service collection</param>
+            <param name="options">Current options reference</param>
+        </member>
+    </members>
+</doc>
