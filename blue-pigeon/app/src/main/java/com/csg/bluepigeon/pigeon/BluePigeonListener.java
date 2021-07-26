@@ -35,7 +35,6 @@ public class BluePigeonListener extends Worker {
     final String BLUE_DISP_NAME_KEY = "blueDispName";
     final String BLUE_PIG_NAME_KEY = "bluePigName";
 
-    File bluetoothDir = new File(Config.BLUETOOTH_DIR_PATH);
     BlueChirp blueChirp;
 
     public BluePigeonListener(
@@ -55,9 +54,16 @@ public class BluePigeonListener extends Worker {
         String jobid = tsLong.toString();
 
         // check if blue request (message from blue dispatcher) exists in either bluetooth or download folder
-        File[] bluetoothDirFiles = bluetoothDir.listFiles();
+        File bluetoothDir = new File(Config.BLUETOOTH_DIR_PATH);
         File downloadDir = new File(Config.DOWNLOAD_DIR_PATH);
-        File[] downloadDirFiles = downloadDir.listFiles();
+        File[] bluetoothDirFiles = new File[0];
+        File[] downloadDirFiles = new File[0];
+        if (bluetoothDir.exists()) {
+            bluetoothDirFiles = bluetoothDir.listFiles();
+        }
+        if (downloadDir.exists()) {
+            downloadDirFiles = downloadDir.listFiles();
+        }
         File[] combinedFileList = new File[bluetoothDirFiles.length + downloadDirFiles.length];
         System.arraycopy(bluetoothDirFiles, 0, combinedFileList, 0, bluetoothDirFiles.length);
         System.arraycopy(downloadDirFiles, 0, combinedFileList, bluetoothDirFiles.length, downloadDirFiles.length);
