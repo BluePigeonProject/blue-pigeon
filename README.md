@@ -209,7 +209,28 @@ The Blue Dispatcher contains the .NET modules to generate, send and receive payl
 </p>
 
 
-Most of the underlying Bluetooth modules used by Blue Dispatcher comes from the well-known and very powerful [32feet](https://github.com/inthehand/32feet/) library. 
+Most of the underlying Bluetooth modules used by Blue Dispatcher comes from the well-known and very powerful [32feet](https://github.com/inthehand/32feet/) library.
+
+### Sample Usage 
+The Blue Dispatcher has options that allow users to enter flags for transmission.
+
+| Flag      | Description |
+| ----------- | ----------- |
+| --device, -d | The Mobile device to send to |
+| --message, -m | The text string to be sent |
+
+```
+C:\Users\user>.\BlueDispatcher.exe
+
+Usage: BlueDispatcher [options]
+
+Options:
+  -m|--message        Message to send to server
+  -d|--device         Device to send to
+
+C:\Users\user>.\BlueDispatcher.exe -d "Pixel 3 XL" -m "fly pigeon fly"
+```
+
 
 **Note: Do implement your own application-layer encryption in Blue Dispatcher if needed, as the payloads are transferred via RFCOMM in plaintext.**
 
